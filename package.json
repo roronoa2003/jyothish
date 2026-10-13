@@ -1,0 +1,1 @@
+{"name":"jyotish-celestial-atlas","private":true,"type":"module","scripts":{"build":"node build.mjs","test":"node --test test/interpretation.test.mjs && node verify.cjs"},"dependencies":{"@mlc-ai/web-llm":"^0.2.85","motion":"12.23.24","pdfjs-dist":"^5.4.296","react":"19.2.0","react-dom":"19.2.0"},"devDependencies":{"esbuild":"0.25.11"}}

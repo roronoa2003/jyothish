@@ -1,0 +1,3 @@
+import {CreateWebWorkerMLCEngine,prebuiltAppConfig} from '@mlc-ai/web-llm';
+export const modelId='Qwen2.5-1.5B-Instruct-q4f32_1-MLC';
+export async function loadLocalAI(onProgress){if(!navigator.gpu)throw Error('WebGPU is unavailable. Use a current compatible Chrome or Edge browser, or keep using the offline chart reader.');let adapter=await navigator.gpu.requestAdapter();if(!adapter)throw Error('A compatible GPU is unavailable. The offline chart reader remains available.');let worker=new Worker(new URL('./local-ai-worker.js',document.baseURI),{type:'module'});try{let engine=await CreateWebWorkerMLCEngine(worker,modelId,{initProgressCallback:onProgress,appConfig:prebuiltAppConfig});return {engine,worker}}catch(e){worker.terminate();throw e}}
