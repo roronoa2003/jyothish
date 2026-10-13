@@ -14,7 +14,7 @@ A free-to-download desktop workspace for exploring Vedic birth charts, planetary
 2. Extract the ZIP and move **Jyotish.app** to Applications.
 3. Open Jyotish. It includes its own Python runtime and PDF dependencies.
 
-Requires macOS 13 or newer. Version 1.0.0 is an ad-hoc signed preview, **not Apple-notarized**. macOS may block first launch. Review the release/source and use macOS Privacy & Security's explicit approval flow only if you trust the build. Do not disable Gatekeeper globally. The Apple Silicon app was run and tested; Intel was packaged but not run on Intel hardware.
+Requires macOS 13 or newer. Version 1.0.1 is an ad-hoc signed preview, **not Apple-notarized**. macOS may block first launch. Review the release/source and use macOS Privacy & Security's explicit approval flow only if you trust the build. Do not disable Gatekeeper globally. The Apple Silicon app was run and tested; Intel was packaged but not run on Intel hardware.
 
 ### Windows x64
 
@@ -30,7 +30,7 @@ Create a profile with birth date, local time and birthplace. Listed cities fill 
 
 Explore the floating parchment Kundli and select a house or planet. Change among sixteen divisional charts. Open **Timing studio** for daily or weekly readings through Mahadasha, Antardasha, Pratyantardasha, Sukshma and Prana. The combined reading explains natal/varga support and conflict, active house links and dated transit contacts. Expand supporting evidence or possible expressions as needed.
 
-Choose **Save chart** for the local profile library. Multiple profiles, JSON backup import/export and reading history are supported. **Life report** runs the bundled Python generator and saves a PDF locally, with sixteen chart diagrams, twelve life-area chapters, dasha tables, twelve monthly analyses, selected Lal Kitab practices and a method register. Reports have clickable contents and chapter bookmarks; length varies with chart and timing.
+Choose **Save chart** for the local profile library. Multiple profiles, JSON backup import/export and reading history are supported. **Life report** runs the bundled Python generator and saves a PDF locally, with sixteen chart diagrams, twelve life-area chapters, dasha tables, twelve monthly analyses, personal antardasha narratives, conjunction chapters, seven Chara Karaka roles, a Sade Sati timeline, optional numerology, selected Lal Kitab practices and a method register. Reports have clickable contents and chapter bookmarks; length varies with chart and timing.
 
 **Chat** uses the same combinational engine for supported topics. Optional Qwen Lite (0.5B) or Standard (1.5B) runs through WebLLM on compatible WebGPU hardware after an initial download. The app tests a short generation before marking it ready. This is a small local model, not ChatGPT; memory limits, unavailable WebGPU or cache eviction can prevent model loading. Computed offline readings remain available. A manual reading-pack export can be attached to your own ChatGPT conversation; the app does not automate a ChatGPT subscription or require an OpenAI API key.
 
@@ -65,6 +65,12 @@ Astronomy Engine 2.1.19 computes geocentric positions. The app uses an approxima
 Vimshottari uses the remaining nakshatra fraction at birth, the 120-year cycle, 365.25636-day years and nested proportional subdivisions. Intervals are half-open: `[start, end)`. The final child endpoint is the exact parent endpoint. Daily and weekly boundaries and report timeline timestamps use UTC, explicitly labeled; they are not local sunrise-based days. Different year lengths and ephemeris conventions can shift boundaries.
 
 D2 uses the Sun/Moon Hora convention; D30 uses unequal portions; D60 uses the declared degree-only mapping. High divisions are especially birth-time sensitive. There is no automated rectification. Base Ashtakavarga preserves the 337 SAV total; shodhana is not applied, and the selected Jupiter self-contribution variant is disclosed.
+
+### Report depth and independent narratives
+
+The life book now introduces each domain with a plain-language personal storyline before its technical evidence. Every displayed antardasha has chart-specific planetary relationship context and selected domain stories, rather than just date rows. Conjunction groups retain actual degree separation, and seven Chara Karaka roles use the declared degree-ranking convention. The report horizon is birth through 120 years, with the last displayed period truncated; it is not a lifespan prediction. A Sade Sati appendix computes sign phases around the natal Moon. Numerology remains a separate optional convention.
+
+The generator was reviewed against a privately supplied long-form report for structure and explanation depth. Its text, personal data, dates and conclusions are not reused. This release does not replicate every feature of that report: full strength, all Raj yogas, cancellation rules, sunrise Panchang, gemstone/rudraksha prescriptions and event-probability tables remain outside the implemented coverage.
 
 ### How combined interpretation works
 
