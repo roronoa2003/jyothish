@@ -14,7 +14,7 @@ A free-to-download desktop workspace for exploring Vedic birth charts, planetary
 2. Extract the ZIP and move **Jyotish.app** to Applications.
 3. Open Jyotish. It includes its own Python runtime and PDF dependencies.
 
-Requires macOS 13 or newer. Version 1.0.3 is an ad-hoc signed preview, **not Apple-notarized**. macOS may block first launch. Review the release/source and use macOS Privacy & Security's explicit approval flow only if you trust the build. Do not disable Gatekeeper globally. The Apple Silicon app was run and tested; Intel was packaged but not run on Intel hardware.
+Requires macOS 13 or newer. Version 1.0.4 is an ad-hoc signed preview, **not Apple-notarized**. macOS may block first launch. Review the release/source and use macOS Privacy & Security's explicit approval flow only if you trust the build. Do not disable Gatekeeper globally. The Apple Silicon app was run and tested; Intel was packaged but not run on Intel hardware.
 
 ### Windows x64
 
@@ -142,3 +142,12 @@ The workflow was syntax-checked and correctly stops when no signing identity is 
 Personal chat replies now lead with a concise conditional outlook, the main opening or tension, and a practical next step. Full natal ruler chains, varga comparisons, dispositors and transit sampling remain in the expandable evidence panel. Asking why or requesting detail adds a short explanation to the reply. Technical chart questions retain their topic-specific answers. Optional local Qwen receives the same question-first presentation instructions; its factual validation remains in place.
 
 This is a communication improvement, not a newly validated forecasting method. Source passages and rule calculations remain inspectable. The desktop app does not update automatically: download the new version, close the old app and replace it while retaining your local profile backups.
+
+
+## Question-specific timing and reasoning / 1.0.4
+
+“When will I enter a relationship?” now searches future Mahadasha/Antardasha/Pratyantardasha intervals instead of giving an existing-partner daily reading. Dating, commitment, job opportunity and promotion intents use different target houses and relevant D9/D10 context. Explicit calendar months, years and shorter horizons are respected; the default search is two years. The result states supported, mixed or uncertain chart evidence and up to three dated periods. The priority order is documented in the answer evidence and is an editorial rule ranking, not an event probability. Dated weekly Jupiter/Saturn checkpoints modify the context; exact event dates and guaranteed outcomes are not produced. Follow-up questions retain the previous question's topic.
+
+The default optional AI is now **DeepSeek R1 Distill Qwen 7B**, using the MLC/WebLLM prebuilt 4-bit model (about 5.1 GB float16 or 5.9 GB float32 GPU memory estimate). It is a different reasoning model from the former small Qwen Instruct models. Lite remains an optional low-memory compatibility choice. Models download to local cache on first use; no account/API key is required. A secure WebGPU-capable device is required. The loader tests generation before marking ready, and incomplete thinking output is not displayed. AI rewrites that omit the computed date windows or add new date labels are rejected in favor of the question-specific calculated answer.
+
+[MLC converted model](https://huggingface.co/mlc-ai/DeepSeek-R1-Distill-Qwen-7B-q4f16_1-MLC) · [Original DeepSeek model and license](https://github.com/deepseek-ai/DeepSeek-R1). Reasoning benchmark results do not establish astrology accuracy. The app does not claim every device can load a 7B model.
