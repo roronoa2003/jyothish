@@ -14,7 +14,7 @@ A free-to-download desktop workspace for exploring Vedic birth charts, planetary
 2. Extract the ZIP and move **Jyotish.app** to Applications.
 3. Open Jyotish. It includes its own Python runtime and PDF dependencies.
 
-Requires macOS 13 or newer. Version 1.0.2 is an ad-hoc signed preview, **not Apple-notarized**. macOS may block first launch. Review the release/source and use macOS Privacy & Security's explicit approval flow only if you trust the build. Do not disable Gatekeeper globally. The Apple Silicon app was run and tested; Intel was packaged but not run on Intel hardware.
+Requires macOS 13 or newer. Version 1.0.3 is an ad-hoc signed preview, **not Apple-notarized**. macOS may block first launch. Review the release/source and use macOS Privacy & Security's explicit approval flow only if you trust the build. Do not disable Gatekeeper globally. The Apple Silicon app was run and tested; Intel was packaged but not run on Intel hardware.
 
 ### Windows x64
 
@@ -135,3 +135,10 @@ Current downloads remain non-notarized previews. The presence of a signing scrip
 The workflow was syntax-checked and correctly stops when no signing identity is present. End-to-end signing, Apple acceptance and hardened-runtime compatibility remain unverified until enrollment and credentials are available. Notarization addresses the unverified-developer warning; macOS may still show its ordinary first-launch download confirmation.
 
 [Apple notarization documentation](https://developer.apple.com/documentation/security/notarizing-macos-software-before-distribution)
+
+
+## Chat presentation update / 1.0.3
+
+Personal chat replies now lead with a concise conditional outlook, the main opening or tension, and a practical next step. Full natal ruler chains, varga comparisons, dispositors and transit sampling remain in the expandable evidence panel. Asking why or requesting detail adds a short explanation to the reply. Technical chart questions retain their topic-specific answers. Optional local Qwen receives the same question-first presentation instructions; its factual validation remains in place.
+
+This is a communication improvement, not a newly validated forecasting method. Source passages and rule calculations remain inspectable. The desktop app does not update automatically: download the new version, close the old app and replace it while retaining your local profile backups.
