@@ -14,7 +14,7 @@ A free-to-download desktop workspace for exploring Vedic birth charts, planetary
 2. Extract the ZIP and move **Jyotish.app** to Applications.
 3. Open Jyotish. It includes its own Python runtime and PDF dependencies.
 
-Requires macOS 13 or newer. Version 1.0.1 is an ad-hoc signed preview, **not Apple-notarized**. macOS may block first launch. Review the release/source and use macOS Privacy & Security's explicit approval flow only if you trust the build. Do not disable Gatekeeper globally. The Apple Silicon app was run and tested; Intel was packaged but not run on Intel hardware.
+Requires macOS 13 or newer. Version 1.0.2 is an ad-hoc signed preview, **not Apple-notarized**. macOS may block first launch. Review the release/source and use macOS Privacy & Security's explicit approval flow only if you trust the build. Do not disable Gatekeeper globally. The Apple Silicon app was run and tested; Intel was packaged but not run on Intel hardware.
 
 ### Windows x64
 
@@ -101,6 +101,21 @@ The `docs/` directory is the download landing page served at `/jyothish/`. The a
 
 ## Validation
 
-Automated checks cover historical time-zone conversion and ambiguous DST, eastern-horizon ascendant geometry, varga boundaries, Ashtakavarga totals, gapless dasha windows, five-level parent containment, proportional lengths and exact boundary switches, local profile persistence/import, protocol traversal protection, distinct interpretations for different synthetic birth profiles, support/conflict classification, duration coverage, sourced remedy selection and classical relationship directions.
+33 automated tests passed for this update. Checks cover historical time-zone conversion and ambiguous DST, eastern-horizon ascendant geometry, varga boundaries, Ashtakavarga totals, gapless dasha windows, five-level parent containment, proportional lengths and exact boundary switches, local profile persistence/import, protocol traversal protection, distinct interpretations for different synthetic birth profiles, support/conflict classification, duration coverage, sourced remedy selection and classical relationship directions.
 
 Mac native checks verified chart calculation, local profile save/library, timing studio and bundled-Python life-report generation. PDF cover, charts, interpretation, daily reading and remedy pages were rendered and visually inspected. Windows and Intel runtime execution remain unverified.
+
+
+## Interpretation engine update / 1.0.2
+
+The source review for this release is recorded in [the research and rule register](RESEARCH.md). New interpretations are used by the timing studio, offline chat and Python life reports.
+
+- Recompute house-ruler chains inside the selected varga, rather than using only its sign dignity.
+- Add the antardasha position and ownership from the mahadasha lord as a temporary reference; keep each reference distinct from the natal ascendant.
+- Preserve a debilitation condition in either chart even when the other sign is unclassified. Support and strain can coexist.
+- Sample Jupiter and Saturn at six-hour intervals throughout a day, week or month, plus the final instant. Include full-sign aspects to relevant empty houses and contacts to the broader period lords active at each sample. Counts are observations, not durations or event probabilities; exact ingress times are not calculated.
+- Treat a lord repeating at several dasha levels as one recurring influence. Distinguish direct house links from general significators and finer-period emphasis.
+- Run a hypothetical ±5-minute ascendant experiment at 30-second steps. Flag changing divisional house chains as provisional. This is not birth-time rectification and does not test planetary or dasha stability.
+- Read an explicitly requested month from its first UTC day, rather than starting halfway through it.
+
+These changes improve consistency, specificity and traceability within the declared traditional framework. There is no measured increase in real-world predictive accuracy. Ephemeris conventions, full-strength calculations and the previously documented coverage limits remain material constraints.
