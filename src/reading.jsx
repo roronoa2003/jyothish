@@ -1,6 +1,7 @@
 import './report.jsx';
 import './chat.jsx';
 import './app-nav.jsx';
+import './home.jsx';
 import React,{useState,useEffect,useMemo} from 'react';
 import {createRoot} from 'react-dom/client';
 import {vargas,vargaSign} from './vargas.js';

@@ -1,5 +1,5 @@
 {
-  "version": "747eeab7c5d1d2",
+  "version": "9402dd1ad25550",
   "files": [
     "./",
     "ADDITIONAL-LICENSES.txt",
@@ -31,6 +31,7 @@
     "manifest.webmanifest",
     "pdf.worker.min.mjs",
     "reading.js",
+    "studio.css",
     "style.css",
     "theme.css",
     "three.module.js",
