@@ -1,1 +1,10 @@
 node_modules/
+desktop/runtimes/
+desktop/release/
+desktop/stage/
+desktop/www/
+artifacts/
+__pycache__/
+*.pyc
+sample-report-input.json
+.openai/

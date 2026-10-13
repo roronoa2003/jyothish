@@ -1,0 +1,19 @@
+{
+  "name": "jyotish-desktop",
+  "productName": "Jyotish",
+  "version": "1.0.0",
+  "private": true,
+  "description": "A private desktop observatory for birth charts, dashas and source-grounded readings.",
+  "author": "Rohan Iyer",
+  "license": "UNLICENSED",
+  "main": "main.cjs",
+  "scripts": {
+    "start": "electron .",
+    "package": "node package.mjs",
+    "test": "node --test test/*.test.cjs"
+  },
+  "devDependencies": {
+    "@electron/packager": "20.3.0",
+    "electron": "44.7.0"
+  }
+}
