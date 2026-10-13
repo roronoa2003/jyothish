@@ -18,7 +18,7 @@ python3 -m http.server 4173 --directory dist
 ## Chat modes
 
 - **Offline chart reader:** deterministic, bounded chart explanations from computed positions, periods, divisional mappings, and retrieved source summaries. This is not a general language model.
-- **On-device AI:** optional Qwen 2.5 1.5B through WebLLM. Requires WebGPU, sufficient GPU memory, and a first download of model files. Inference stays on the device. Models and generated answers can be wrong; inspect the evidence. Browser cache eviction can require a new download.
+- **On-device AI:** optional Qwen 2.5 1.5B through WebLLM. Requires WebGPU, sufficient GPU memory, and a first download of model files. Inference stays on the device. Models and generated answers can be wrong; inspect the evidence. Basic checks reject invented source IDs, invalid house lists, obvious ascendant contradictions and repetitive drafts, falling back to the calculated reading. These checks are not a complete factual verifier. Browser cache eviction can require a new download.
 - **Your ChatGPT account:** manually export the reading pack and attach it in ChatGPT. No OpenAI API key, subscription endpoint automation, or ChatGPT fine-tuning is used.
 
 ## Local books and offline use
