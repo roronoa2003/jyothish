@@ -1,5 +1,5 @@
 {
-  "version": "7ba8e78690537f",
+  "version": "4c8a0159a703ae",
   "files": [
     "./",
     "ADDITIONAL-LICENSES.txt",
@@ -31,8 +31,6 @@
     "local-ai-worker.js",
     "manifest.webmanifest",
     "pdf.worker.min.mjs",
-    "qa-reader.js",
-    "qa.html",
     "reading.js",
     "studio.css",
     "style.css",
