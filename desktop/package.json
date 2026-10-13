@@ -10,10 +10,13 @@
   "scripts": {
     "start": "electron .",
     "package": "node package.mjs",
-    "test": "node --test test/*.test.cjs"
+    "test": "node --test test/*.test.cjs",
+    "notarize:check": "node notarize-mac.mjs --check",
+    "notarize:mac": "node notarize-mac.mjs"
   },
   "devDependencies": {
     "@electron/packager": "20.3.0",
-    "electron": "44.7.0"
+    "electron": "44.7.0",
+    "@electron/osx-sign": "2.7.1"
   }
 }

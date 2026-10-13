@@ -119,3 +119,19 @@ The source review for this release is recorded in [the research and rule registe
 - Read an explicitly requested month from its first UTC day, rather than starting halfway through it.
 
 These changes improve consistency, specificity and traceability within the declared traditional framework. There is no measured increase in real-world predictive accuracy. Ephemeris conventions, full-strength calculations and the previously documented coverage limits remain material constraints.
+
+
+## Verified Mac distribution / pending Apple enrollment
+
+Current downloads remain non-notarized previews. The presence of a signing script does not mean Apple has accepted a build.
+
+1. The maintainer must [enroll in the Apple Developer Program](https://developer.apple.com/programs/enroll/) and complete Apple's agreement, identity checks and payment. Apple lists US$99/year, with regional pricing at enrollment.
+2. Create/install a **Developer ID Application** certificate with its matching private key in the build Mac's Keychain. A free development identity or an ad-hoc signature is insufficient.
+3. Store notarization credentials securely with `xcrun notarytool store-credentials jyotish-notary` using its interactive prompts. Never commit credentials or paste them into chat.
+4. Set `JYOTISH_SIGN_IDENTITY` to the exact Developer ID Application identity name and `JYOTISH_NOTARY_PROFILE` to `jyotish-notary`. Run `npm run notarize:check` in `desktop/`.
+5. Build the previews with `npm run package`, then run `npm run notarize:mac`. The workflow signs separate copies with Hardened Runtime, submits each architecture, requires Accepted status, staples and validates the ticket, checks the signature and Gatekeeper, and creates separate notarized ZIPs.
+6. Test launches, Python report generation and optional Qwen on the signed builds before publishing them and updating download links/checksums. Current preview files are not overwritten automatically.
+
+The workflow was syntax-checked and correctly stops when no signing identity is present. End-to-end signing, Apple acceptance and hardened-runtime compatibility remain unverified until enrollment and credentials are available. Notarization addresses the unverified-developer warning; macOS may still show its ordinary first-launch download confirmation.
+
+[Apple notarization documentation](https://developer.apple.com/documentation/security/notarizing-macos-software-before-distribution)

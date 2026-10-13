@@ -8,3 +8,5 @@ __pycache__/
 *.pyc
 sample-report-input.json
 .openai/
+
+desktop/stage-notarized-*/
