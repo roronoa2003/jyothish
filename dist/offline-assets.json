@@ -1,5 +1,5 @@
 {
-  "version": "7f9df2b3588c12",
+  "version": "55924befc2d593",
   "files": [
     "./",
     "ADDITIONAL-LICENSES.txt",
@@ -32,7 +32,9 @@
     "pdf.worker.min.mjs",
     "reading.js",
     "style.css",
+    "theme.css",
     "three.module.js",
-    "vargas.js"
+    "vargas.js",
+    "cosmos.js?v=observatory-1"
   ]
 }
