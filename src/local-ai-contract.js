@@ -1,0 +1,1 @@
+export function nativeConsultationRequest(request){return {prompt:request.messages.at(-1).content,schema:JSON.parse(request.response_format.schema),reasoning:request.extra_body?.enable_thinking===true||(request.extra_body?.enable_thinking!==false&&request.max_tokens>1600)}}

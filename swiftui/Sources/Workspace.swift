@@ -81,7 +81,7 @@ struct Consultation:Identifiable,Codable {var id=UUID();let question:String;let 
    var answer="";var windows:[[String:Double]]?;var failure="";var succeeded=false
    for attempt in 0..<2 {
     do {
-     let raw=try await model.answer(prompt:prompt+(attempt==0 ? "":"\nThe last draft failed validation: \(failure). Correct the format and use only supplied evidence IDs. In prose explain the event implication without repeating planetary calculations, house references, sign names, or dates."),schema:schema)
+     let raw=try await model.answer(prompt:prompt+(attempt==0 ? "":"\nThe last draft failed validation: \(failure). Correct the format and use only supplied evidence IDs. In prose explain the event implication without repeating planetary calculations, house references, sign names, or dates."),schema:schema,reasoning:attempt>0)
      guard let rendered=try await js("return window.jyotishNativeRender(raw,input)",["raw":raw,"input":input]) as? [String:Any],let text=rendered["text"] as? String,!text.isEmpty else{throw LocalFailure(message:"The chart reader returned no usable answer.")}
      answer=text;windows=rendered["windows"] as? [[String:Double]]
      if let issue=try await js("return window.jyotishNativeValidate(answer,input)",["answer":answer,"input":input]) as? String{throw LocalFailure(message:issue)}
@@ -105,7 +105,7 @@ struct Consultation:Identifiable,Codable {var id=UUID();let question:String;let 
   case "elevenSpeak":guard let input=data as? [String:Any] else{throw LocalFailure(message:"Invalid voice reading.")};return try await online.speak(input)
 
   case "aiLoad":try await model.prepare{[weak self] label,value in Task{@MainActor in _ = try? await self?.js("for(const fn of window.jyotishAIProgressListeners)fn(progress)",["progress":["text":label,"progress":value]])}};return ["ready":true]
-  case "aiAnswer":guard let input=data as? [String:Any],let prompt=input["prompt"] as? String,prompt.count<=80000,let schema=input["schema"] as? [String:Any] else{throw LocalFailure(message:"Invalid local model request.")};return try await model.answer(prompt:prompt,schema:schema)
+  case "aiAnswer":guard let input=data as? [String:Any],let prompt=input["prompt"] as? String,prompt.count<=80000,let schema=input["schema"] as? [String:Any] else{throw LocalFailure(message:"Invalid local model request.")};return try await model.answer(prompt:prompt,schema:schema,reasoning:input["reasoning"] as? Bool ?? false)
   case "aiUnload":model.cancel();return ["unloaded":true]
   case "loadConversation":guard let id=data as? String else{return []};let file=try library.safeFile("conversations",id,".json");guard FileManager.default.fileExists(atPath:file.path) else{return []};return try JSONSerialization.jsonObject(with:Data(contentsOf:file))
   case "saveConversation":guard let input=data as? [String:Any],let id=input["profileId"] as? String,library.profiles().contains(where:{$0["id"] as? String==id}),let messages=input["messages"] as? [[String:Any]],messages.count<=200,messages.allSatisfy({(($0["question"] as? String)?.count ?? 999999) <= 2000 && (($0["answer"] as? String)?.count ?? 999999) <= 20000}) else{throw LocalFailure(message:"Invalid local conversation.")};_ = try library.safeFile("conversations",id,".json");try library.write(messages,"conversations/"+id+".json");return ["saved":true]

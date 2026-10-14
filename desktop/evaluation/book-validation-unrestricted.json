@@ -1,0 +1,183 @@
+{
+  "model": "Qwen3.5-9B-Q4_K_M",
+  "contextTokens": 8192,
+  "reasoningBudget": 512,
+  "runs": [
+    {
+      "stage": "unrestricted verdict schema",
+      "cases": [
+        {
+          "caseId": "PVR-EX52-A",
+          "attempts": 1,
+          "seconds": 18.806,
+          "grade": {
+            "passed": true,
+            "faults": [],
+            "kind": "outcome-masked textbook consistency",
+            "expected": "authored publications",
+            "sourcePages": [
+              228,
+              229
+            ]
+          }
+        },
+        {
+          "caseId": "PVR-EX53-1",
+          "attempts": 2,
+          "seconds": 31.197,
+          "grade": {
+            "passed": false,
+            "faults": [
+              "missed family domain",
+              "confused established activation with unresolved strength"
+            ],
+            "kind": "outcome-masked textbook consistency",
+            "expected": "direct support for family expansion",
+            "sourcePages": [
+              229,
+              230
+            ]
+          }
+        },
+        {
+          "caseId": "PVR-EX53-2",
+          "attempts": 2,
+          "seconds": 39.089,
+          "grade": {
+            "passed": false,
+            "faults": [
+              "missed family domain",
+              "confused established activation with unresolved strength"
+            ],
+            "kind": "outcome-masked textbook consistency",
+            "expected": "direct support for family expansion",
+            "sourcePages": [
+              229,
+              230
+            ]
+          }
+        },
+        {
+          "caseId": "PVR-EX52-ABLATION",
+          "attempts": 1,
+          "seconds": 21.226,
+          "grade": {
+            "passed": true,
+            "faults": [],
+            "kind": "outcome-masked textbook consistency",
+            "expected": "timing unresolved",
+            "sourcePages": [
+              228,
+              229
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "stage": "explicit subject-chart snapshot",
+      "cases": [
+        {
+          "caseId": "PVR-EX52-A",
+          "attempts": 1,
+          "seconds": 19.284,
+          "grade": {
+            "passed": true,
+            "faults": [],
+            "kind": "outcome-masked textbook consistency",
+            "expected": "authored publications",
+            "sourcePages": [
+              228,
+              229
+            ]
+          }
+        },
+        {
+          "caseId": "PVR-EX53-1",
+          "attempts": 2,
+          "seconds": 29.916,
+          "grade": {
+            "passed": false,
+            "faults": [
+              "confused established activation with unresolved strength"
+            ],
+            "kind": "outcome-masked textbook consistency",
+            "expected": "direct support for family expansion",
+            "sourcePages": [
+              229,
+              230
+            ]
+          }
+        },
+        {
+          "caseId": "PVR-EX53-2",
+          "attempts": 2,
+          "seconds": 40.568,
+          "grade": {
+            "passed": false,
+            "faults": [
+              "confused established activation with unresolved strength"
+            ],
+            "kind": "outcome-masked textbook consistency",
+            "expected": "direct support for family expansion",
+            "sourcePages": [
+              229,
+              230
+            ]
+          }
+        },
+        {
+          "caseId": "PVR-EX52-ABLATION",
+          "attempts": 1,
+          "seconds": 19.852,
+          "grade": {
+            "passed": true,
+            "faults": [],
+            "kind": "outcome-masked textbook consistency",
+            "expected": "timing unresolved",
+            "sourcePages": [
+              228,
+              229
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "stage": "reasoning enabled on retry",
+      "cases": [
+        {
+          "caseId": "PVR-EX53-1",
+          "attempts": 2,
+          "seconds": 51.734,
+          "grade": {
+            "passed": true,
+            "faults": [],
+            "kind": "outcome-masked textbook consistency",
+            "expected": "direct support for family expansion",
+            "sourcePages": [
+              229,
+              230
+            ]
+          }
+        },
+        {
+          "caseId": "PVR-EX53-2",
+          "attempts": 2,
+          "seconds": 57.124,
+          "grade": {
+            "passed": true,
+            "faults": [],
+            "kind": "outcome-masked textbook consistency",
+            "expected": "direct support for family expansion",
+            "sourcePages": [
+              229,
+              230
+            ]
+          }
+        }
+      ]
+    }
+  ],
+  "limitation": "Selected retrospective rule-consistency checks. Earlier failures remain visible. Correct topic and activation classification does not demonstrate future-event accuracy or complete book coverage."
+}

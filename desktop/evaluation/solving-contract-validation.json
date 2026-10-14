@@ -1,0 +1,57 @@
+{
+  "model": "Qwen3.5-9B-Q4_K_M",
+  "profiles": "synthetic only",
+  "runs": [
+    {
+      "stage": "initial mandatory period contract",
+      "cases": [
+        {
+          "question": "Will I be selected for my campus research project by 18th Oct?",
+          "seconds": 51.67,
+          "attempts": 2,
+          "passed": false,
+          "issue": "The answer must ground its judgment in the birth chart."
+        },
+        {
+          "question": "When will I get into a relationship?",
+          "seconds": 29.204,
+          "attempts": 1,
+          "passed": true,
+          "issue": ""
+        },
+        {
+          "question": "What does next month emphasize for my career?",
+          "seconds": 47.003,
+          "attempts": 2,
+          "passed": true,
+          "issue": ""
+        }
+      ]
+    },
+    {
+      "stage": "explicit evidence groups",
+      "cases": [
+        {
+          "question": "Will I be selected for my campus research project by 18th Oct?",
+          "seconds": 51.161,
+          "attempts": 2,
+          "passed": true,
+          "issue": ""
+        }
+      ]
+    },
+    {
+      "stage": "selection stage and reasoning retry",
+      "cases": [
+        {
+          "question": "Will I be selected for my campus research project by 18th Oct?",
+          "seconds": 80.806,
+          "attempts": 2,
+          "passed": true,
+          "issue": ""
+        }
+      ]
+    }
+  ],
+  "limitation": "Chart grounding and question relevance checks; not observed event accuracy. Earlier failures and retries retained."
+}
