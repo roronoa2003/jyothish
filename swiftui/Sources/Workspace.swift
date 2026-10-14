@@ -20,6 +20,7 @@ struct Consultation:Identifiable,Codable {var id=UUID();let question:String;let 
  @Published var readingDate=Date()
  let web:WKWebView
  let library:LocalLibrary
+ let online:OnlineServices
  let model:LocalModel
  private var server:AssetServer?
  private var generation:Task<Void,Never>?
@@ -32,9 +33,10 @@ struct Consultation:Identifiable,Codable {var id=UUID();let question:String;let 
   let resources=Bundle.main.resourceURL!
   let root=env["JYOTISH_TEST_DATA"].map{URL(fileURLWithPath:$0)} ?? FileManager.default.urls(for:.applicationSupportDirectory,in:.userDomainMask)[0].appendingPathComponent("Jyotish")
   library=try! LocalLibrary(root:root)
+  online=OnlineServices(library:library)
   model=LocalModel(folder:root.appendingPathComponent("models"),executable:resources.appendingPathComponent("llama/llama-server"))
   port=env["JYOTISH_TEST_DATA"] == nil ? 49713:49714
-  let config=WKWebViewConfiguration();config.websiteDataStore = .default();config.preferences.setValue(true,forKey:"developerExtrasEnabled")
+  let config=WKWebViewConfiguration();config.websiteDataStore = .default();config.mediaTypesRequiringUserActionForPlayback=[];config.preferences.setValue(true,forKey:"developerExtrasEnabled")
   web=WKWebView(frame:.zero,configuration:config)
   web.underPageBackgroundColor=NSColor(red:0.04,green:0.04,blue:0.065,alpha:1)
   super.init()
@@ -42,7 +44,7 @@ struct Consultation:Identifiable,Codable {var id=UUID();let question:String;let 
   config.userContentController.add(self,name:"profile")
   let script="""
   window.jyothishDesktop={};
-  for(const key of ['info','listProfiles','saveProfile','exportLibrary','importLibrary','saveReading','listReadings','exportReading','listReports','generateLifeReport','openReport','exportReport','savePDF','listForecasts','saveForecast','aiLoad','aiAnswer','aiUnload','loadConversation','saveConversation'])window.jyothishDesktop[key]=data=>window.webkit.messageHandlers.native.postMessage({method:key,data});
+  for(const key of ['info','listProfiles','saveProfile','exportLibrary','importLibrary','saveReading','listReadings','exportReading','listReports','generateLifeReport','openReport','exportReport','savePDF','listForecasts','saveForecast','aiLoad','aiAnswer','aiUnload','loadConversation','saveConversation','onlineConfig','saveOnlineConfig','onlineAnswer','cancelOnline','elevenVoices','elevenToken','elevenSpeak'])window.jyothishDesktop[key]=data=>window.webkit.messageHandlers.native.postMessage({method:key,data});
   window.jyothishDesktop.nativeAI=true;
   window.jyotishAIProgressListeners=new Set();window.jyothishDesktop.onAIProgress=fn=>{window.jyotishAIProgressListeners.add(fn);return()=>window.jyotishAIProgressListeners.delete(fn)};
   window.jyothishDesktop.observeForecast=(id,observation)=>window.webkit.messageHandlers.native.postMessage({method:"observeForecast",data:{id,observation}});
@@ -94,6 +96,14 @@ struct Consultation:Identifiable,Codable {var id=UUID();let question:String;let 
  }
  private func handle(_ method:String,_ data:Any?)async throws->Any {
   switch method{
+  case "onlineConfig":return online.config()
+  case "saveOnlineConfig":guard let input=data as? [String:Any] else{throw LocalFailure(message:"Invalid online settings.")};return try online.save(input)
+  case "onlineAnswer":guard let input=data as? [String:Any] else{throw LocalFailure(message:"Invalid online reading.")};return try await online.answer(input)
+  case "cancelOnline":online.cancel();return ["stopped":true]
+  case "elevenVoices":return try await online.voices()
+  case "elevenToken":return try await online.token()
+  case "elevenSpeak":guard let input=data as? [String:Any] else{throw LocalFailure(message:"Invalid voice reading.")};return try await online.speak(input)
+
   case "aiLoad":try await model.prepare{[weak self] label,value in Task{@MainActor in _ = try? await self?.js("for(const fn of window.jyotishAIProgressListeners)fn(progress)",["progress":["text":label,"progress":value]])}};return ["ready":true]
   case "aiAnswer":guard let input=data as? [String:Any],let prompt=input["prompt"] as? String,prompt.count<=80000,let schema=input["schema"] as? [String:Any] else{throw LocalFailure(message:"Invalid local model request.")};return try await model.answer(prompt:prompt,schema:schema)
   case "aiUnload":model.cancel();return ["unloaded":true]
@@ -122,6 +132,7 @@ struct Consultation:Identifiable,Codable {var id=UUID();let question:String;let 
   try FileManager.default.setAttributes([.posixPermissions:0o600],ofItemAtPath:output.path);let record:[String:Any]=["id":id,"profileId":pid,"name":profile["name"] as? String ?? "Your chart","createdAt":ISO8601DateFormatter().string(from:Date())];var all=library.read("reports/index.json") as? [[String:Any]] ?? [];all.append(record);try library.write(all,"reports/index.json");return record
  }
  func webView(_ webView:WKWebView,decidePolicyFor action:WKNavigationAction,decisionHandler:@escaping(WKNavigationActionPolicy)->Void){if let url=action.request.url,url.host=="127.0.0.1",url.port==Int(port){decisionHandler(.allow)}else{if let url=action.request.url,["https","http"].contains(url.scheme ?? ""){NSWorkspace.shared.open(url)};decisionHandler(.cancel)}}
+ func webView(_ webView:WKWebView,requestMediaCapturePermissionFor origin:WKSecurityOrigin,initiatedByFrame frame:WKFrameInfo,type:WKMediaCaptureType,decisionHandler:@escaping(WKPermissionDecision)->Void){decisionHandler(origin.host=="127.0.0.1" && origin.port==Int(port) && frame.isMainFrame && type == .microphone ? .prompt:.deny)}
  func webView(_ webView:WKWebView,runOpenPanelWith parameters:WKOpenPanelParameters,initiatedByFrame frame:WKFrameInfo,completionHandler:@escaping([URL]?)->Void){let panel=NSOpenPanel();panel.allowsMultipleSelection=parameters.allowsMultipleSelection;completionHandler(panel.runModal() == .OK ? panel.urls:nil)}
 }
 extension ProcessInfo{var machineArchitecture:String{

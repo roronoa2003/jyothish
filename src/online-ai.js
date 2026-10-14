@@ -1,0 +1,1 @@
+export function onlineEngine(api){return {interruptGenerate:()=>api.cancelOnline(),chat:{completions:{create:async request=>{const text=await api.onlineAnswer({prompt:request.messages.at(-1).content,schema:JSON.parse(request.response_format.schema)});return (async function*(){yield {choices:[{delta:{content:text}}]}})()}}}}}

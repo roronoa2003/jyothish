@@ -6,7 +6,7 @@ A private Vedic astrology workspace with an interactive parchment Kundli, sixtee
 
 ## Install
 
-**Mac:** download Apple Silicon or Intel ZIP, extract, and move Jyotish.app into Applications. Version 1.1.2 restores the original Atlas interface inside a SwiftUI/WebKit host, retaining native storage and inference and requires macOS 13.3+. It is ad-hoc signed, **not Apple-notarized**. Apple may block first launch; review the source/release and use the specific Privacy & Security approval only if you trust it. Apple Silicon was exercised locally; Intel execution remains unverified on Intel hardware.
+**Mac:** download Apple Silicon or Intel ZIP, extract, and move Jyotish.app into Applications. Version 1.1.3 restores the original Atlas interface inside a SwiftUI/WebKit host, retaining native storage and inference and requires macOS 13.3+. It is ad-hoc signed, **not Apple-notarized**. Apple may block first launch; review the source/release and use the specific Privacy & Security approval only if you trust it. Apple Silicon was exercised locally; Intel execution remains unverified on Intel hardware.
 
 **Windows 10/11 x64:** extract the entire portable ZIP and open Jyotish.exe. Keep its supporting files together. This build is unsigned; Windows execution and GPU compatibility remain unverified on Windows hardware. Python is included.
 
@@ -30,12 +30,22 @@ The model receives the question, recent questions, calculated facts, relevant ch
 
 Imported searchable PDFs/text remain local and are retrieved at answer time. **Importing a book does not train the model.** The app bundles selected paraphrases and references, not copyrighted full books.
 
+## Optional online reasoning and voice
+
+In Chat → Reading settings, choose **Online AI · Groq free tier**, enter your own account-issued key, enable the disclosed sharing permission and save. The default hosted model is Qwen 3.8 27B. Free quotas are account-limited and may be insufficient for high-volume customer use. No paid billing or shared key is enabled by the app.
+
+Online mode uses the same question planning, calculated natal/divisional facts, period activation, timing windows, source retrieval, structured output and fact/date validation as local inference. Invalid responses get one repair attempt and then a visible error, rather than a generic substitute. Book retrieval supplies context; it does not fine-tune model weights. Retrieved-source cards are hidden from conversation display but retained in context and answer export.
+
+Mac keys are stored in Keychain. Windows keys use Electron OS encryption; saving is refused when encryption is unavailable. Keys are masked in settings and are never included in releases or profile-library exports. Online consent sends the question, chart/birth context and relevant source excerpts to Groq. Leave it off to keep inference local.
+
+Optional ElevenLabs voice uses your own key and selected voice. Choose a mature Indian male voice from your account/library; no real person is cloned. Speech input uses Scribe realtime and output uses Flash v2.5. VAD, a silence allowance, sustained transcript checks, echo/backchannel filtering, playback cancellation and request cancellation support interruptions. Voice credits and commercial rights depend on the ElevenLabs plan. The user deferred voice account setup: turn-control unit checks pass, but live ElevenLabs audio, microphone permission behavior and conversational smoothness are **not yet verified**. This is a custom voice pipeline, not a configured ElevenLabs Agents service or a claim of ChatGPT-equivalent turn handling.
+
 ## Storage
 
 - Mac: `~/Library/Application Support/Jyotish/`
 - Windows: `%APPDATA%\\Jyotish\\`
 
-Profiles: chart-library.json. Conversations, readings and report PDFs: their respective subfolders. Forecast snapshots: prediction-journal.json. Models: models/. Imported books use local browser storage. These files are not encrypted by the app; device access permits access to them. No profile sync or telemetry is implemented. Model downloads use public hosts; local inference does not transmit birth charts. New downloads contain no saved personal profiles or model caches.
+Profiles: chart-library.json. Conversations, readings and report PDFs: their respective subfolders. Forecast snapshots: prediction-journal.json. Models: models/. Imported books use local browser storage. These files are not encrypted by the app; device access permits access to them. No profile sync or telemetry is implemented. API keys are stored separately as described above; online preferences contain no plaintext keys. Model downloads use public hosts; local inference does not transmit birth charts. Optional online/voice modes transmit only after the corresponding sharing choice is enabled. New downloads contain no saved personal profiles or model caches.
 
 ## Calculation and interpretation
 

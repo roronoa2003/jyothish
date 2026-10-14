@@ -50,3 +50,10 @@ The original Atlas visual design is restored in 1.1.1 while retaining native mod
 ## 1.1.2 Mac startup repair
 
 The native asset server canonicalizes both the resource root and requested file before checking containment. Mac App Translocation can otherwise present `/private/var` and `/var` aliases as different prefixes, producing empty responses and a white screen. The new native startup test serves assets from an aliased temporary app path, checks missing files and HEAD requests, and rejects encoded traversal and external symlinks. The fixed Atlas was opened from that temporary path. A native loading/error surface and retry action cover navigation failure and WebKit termination.
+
+
+## 1.1.3 optional online reasoning
+
+Groq uses the same `consultationInput` facts, rules, retrieved passages, question planning and timing windows as native local inference. `generateConsultation` validates both paths through the same evidence-ID, calculated-date and question-specific checks. A real Groq Qwen 3.8 27B request using the synthetic built-in example produced a next-month career reading and passed these checks. This verifies integration, not predictive accuracy. No personal chart was used for that API test.
+
+Validation: 17 root tests, 63 desktop tests and the native Mac startup test pass. Added tests cover masked/encrypted storage, consent gates, structured request preservation, quota errors, voice consent and interruption behavior. ElevenLabs live audio remains unverified; the user elected to leave voice optional. Sources remain in retrieval and export while source cards are removed from conversation display.
