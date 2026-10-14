@@ -1,7 +1,7 @@
 {
   "name": "jyotish-desktop",
   "productName": "Jyotish",
-  "version": "1.1.1",
+  "version": "1.1.2",
   "private": true,
   "description": "A private desktop observatory for birth charts, dashas and source-grounded readings.",
   "author": "Rohan Iyer",

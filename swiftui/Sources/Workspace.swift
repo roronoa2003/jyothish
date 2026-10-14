@@ -14,6 +14,8 @@ struct Consultation:Identifiable,Codable {var id=UUID();let question:String;let 
  @Published var status="Local reasoning · Qwen3.5 9B"
  @Published var progress:Double=0
  @Published var error=""
+ @Published var workspaceReady=false
+ @Published var startupError=""
  @Published var question=""
  @Published var readingDate=Date()
  let web:WKWebView
@@ -23,6 +25,7 @@ struct Consultation:Identifiable,Codable {var id=UUID();let question:String;let 
  private var generation:Task<Void,Never>?
  private var commandCallback=""
  private var reportRunning=false
+ private var startupTimeout:Task<Void,Never>?
  private let port:UInt16
  override init(){
   let env=ProcessInfo.processInfo.environment
@@ -33,6 +36,7 @@ struct Consultation:Identifiable,Codable {var id=UUID();let question:String;let 
   port=env["JYOTISH_TEST_DATA"] == nil ? 49713:49714
   let config=WKWebViewConfiguration();config.websiteDataStore = .default();config.preferences.setValue(true,forKey:"developerExtrasEnabled")
   web=WKWebView(frame:.zero,configuration:config)
+  web.underPageBackgroundColor=NSColor(red:0.04,green:0.04,blue:0.065,alpha:1)
   super.init()
   config.userContentController.addScriptMessageHandler(self,contentWorld:.page,name:"native")
   config.userContentController.add(self,name:"profile")
@@ -47,8 +51,14 @@ struct Consultation:Identifiable,Codable {var id=UUID();let question:String;let 
   config.userContentController.addUserScript(WKUserScript(source:script,injectionTime:.atDocumentStart,forMainFrameOnly:true))
   web.navigationDelegate=self;web.uiDelegate=self
   profiles=library.profiles().map{BirthProfile(values:$0)}
-  do{server=try AssetServer(root:resources.appendingPathComponent("www"),port:port,onReady:{[weak self] in guard let self else{return};self.web.load(URLRequest(url:URL(string:"http://127.0.0.1:\(self.port)/")!))},onFailure:{[weak self] message in self?.error="Could not start chart workspace: "+message})}catch{self.error="Could not start local chart workspace: \(error.localizedDescription)"}
+  do{server=try AssetServer(root:resources.appendingPathComponent("www"),port:port,onReady:{[weak self] in self?.retryStartup()},onFailure:{[weak self] message in self?.startupFailed("Could not start the local workspace. Quit any older Jyotish app and reopen this version. "+message)})}catch{startupFailed("Could not start the local workspace: \(error.localizedDescription)")}
  }
+ func retryStartup(){startupTimeout?.cancel();startupError="";workspaceReady=false;web.load(URLRequest(url:URL(string:"http://127.0.0.1:\(port)/")!,cachePolicy:.reloadIgnoringLocalCacheData));startupTimeout=Task{try? await Task.sleep(nanoseconds:20_000_000_000);guard !Task.isCancelled,!workspaceReady else{return};startupFailed("The workspace did not finish loading. Retry, or quit any older Jyotish app and reopen this version.")}}
+ private func startupFailed(_ message:String){startupTimeout?.cancel();startupError=message;workspaceReady=false}
+ func webView(_ webView:WKWebView,didFinish navigation:WKNavigation!){Task{do{let ready=try await js("return await new Promise(resolve=>{const deadline=Date.now()+10000;const check=()=>{if(document.querySelector('main') && document.querySelector('.studio-rail') && window.jyotishWorkspace)resolve(true);else if(Date.now()>=deadline)resolve(false);else setTimeout(check,50)};check()})");guard ready as? Bool==true else{throw LocalFailure(message:"The app interface could not be loaded. Retry to reload its local files.")};startupTimeout?.cancel();startupError="";workspaceReady=true}catch{startupFailed(error.localizedDescription)}}}
+ func webView(_ webView:WKWebView,didFailProvisionalNavigation navigation:WKNavigation!,withError error:Error){startupFailed("Could not load the local workspace: "+error.localizedDescription)}
+ func webView(_ webView:WKWebView,didFail navigation:WKNavigation!,withError error:Error){startupFailed("Workspace loading failed: "+error.localizedDescription)}
+ func webViewWebContentProcessDidTerminate(_ webView:WKWebView){startupFailed("The chart display stopped. Retry to reopen it; saved profiles remain on this device.")}
  func trusted(_ message:WKScriptMessage)->Bool{message.frameInfo.isMainFrame&&message.frameInfo.securityOrigin.host=="127.0.0.1"&&message.frameInfo.securityOrigin.port==Int(port)}
  func userContentController(_ userContentController:WKUserContentController,didReceive message:WKScriptMessage){guard trusted(message) else{return};if message.name=="profile",let data=message.body as? [String:Any]{stop();profileName=data["name"] as? String ?? "Your chart";messages=[];if let id=profileID,let d=try? Data(contentsOf:library.root.appendingPathComponent("conversations/\(id).json")),let saved=try? JSONDecoder().decode([Consultation].self,from:d){messages=saved}}}
  func userContentController(_ userContentController:WKUserContentController,didReceive message:WKScriptMessage,replyHandler:@escaping(Any?,String?)->Void){

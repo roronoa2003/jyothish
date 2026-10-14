@@ -45,3 +45,8 @@ Ten added tests check reference charts, purushartha groups, badhaka rules, eight
 The Lesson 42 marriage quiz is **not passed**. Dwisaptati reproduces the reported April 1994 Rahu major-period start, but the computed subperiod on the reported May 1997 marriage date is Saturn rather than Jupiter under the declared sidereal year. The book resolves competing dates using annual Tithi Pravesha, which is not implemented here. The test is not altered to force the known answer. Bangalore coordinates in the probe are the app's listed-city approximation because that example does not supply exact coordinates.
 
 The original Atlas visual design is restored in 1.1.1 while retaining native model inference, profile storage, life books, timing and forecast journal. A native Mac question about next-month career completed with a chart-grounded answer and persisted across reopening. Root tests: 17 passed; desktop tests: 59 passed. Intel and Windows runtime execution still require testing on those platforms.
+
+
+## 1.1.2 Mac startup repair
+
+The native asset server canonicalizes both the resource root and requested file before checking containment. Mac App Translocation can otherwise present `/private/var` and `/var` aliases as different prefixes, producing empty responses and a white screen. The new native startup test serves assets from an aliased temporary app path, checks missing files and HEAD requests, and rejects encoded traversal and external symlinks. The fixed Atlas was opened from that temporary path. A native loading/error surface and retry action cover navigation failure and WebKit termination.
