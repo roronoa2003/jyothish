@@ -1,4 +1,5 @@
 import {copyFile,readdir,writeFile,readFile,rm} from 'node:fs/promises';import {createHash} from 'node:crypto';import {build} from 'esbuild';
+await build({entryPoints:['src/vimshottari.js'],bundle:true,minify:true,format:'iife',globalName:'JyotishDasha',outfile:'dist/vimshottari.js'});
 await rm('dist/chunks',{recursive:true,force:true});
 await build({entryPoints:{reading:'src/reading.jsx'},bundle:true,minify:true,format:'esm',splitting:true,outdir:'dist',chunkNames:'chunks/[name]-[hash]',jsx:'automatic',define:{'process.env.NODE_ENV':'"production"'},legalComments:'eof'});
 await build({entryPoints:['src/local-ai-worker.js'],bundle:true,minify:true,format:'esm',outfile:'dist/local-ai-worker.js',legalComments:'eof'});

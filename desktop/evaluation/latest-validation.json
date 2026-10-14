@@ -1,0 +1,41 @@
+{
+  "model": "Qwen3.5-9B-Q4_K_M",
+  "runId": "2026-10-14T15-13-41-310Z",
+  "graderVersion": 3,
+  "cases": [
+    {
+      "caseId": "PVR-EX52-A",
+      "attempts": 1,
+      "seconds": 26.322,
+      "passed": true,
+      "faults": [],
+      "inputHash": "0a59421c697b8412818e7112ab81e405ebbb017a9abe3a44b3c57f46c82e4816"
+    },
+    {
+      "caseId": "PVR-EX53-1",
+      "attempts": 1,
+      "seconds": 25.188,
+      "passed": true,
+      "faults": [],
+      "inputHash": "54e7dfe578d2190ed54211139b2d760781057e8840190f06c34b089b40125f9f"
+    },
+    {
+      "caseId": "PVR-EX53-2",
+      "attempts": 1,
+      "seconds": 27.347,
+      "passed": true,
+      "faults": [],
+      "inputHash": "aa98386146dd2bac4daa36ba8d87a8cd9a8c9a59ffb78092a9ef7631184ad185"
+    },
+    {
+      "caseId": "PVR-EX52-ABLATION",
+      "attempts": 1,
+      "seconds": 28.895,
+      "passed": true,
+      "faults": [],
+      "inputHash": "b357766b47d805160434751eab8b25d882897ac8b75e7ef27386f15aa3d5b351"
+    }
+  ],
+  "limitation": "Selected retrospective examples; outcome masking does not prevent training-data memorization or establish prospective accuracy.",
+  "constraints": "Activation output is constrained to calculated preconditions. This measures grounded explanation, not independent event prediction."
+}

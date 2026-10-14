@@ -1,5 +1,5 @@
 {
-  "version": "4c8a0159a703ae",
+  "version": "a6dee76147fe69",
   "files": [
     "./",
     "ADDITIONAL-LICENSES.txt",
@@ -22,8 +22,8 @@
     "assets/virgo.svg",
     "astronomy.js",
     "chunks/chunk-2RUN43TJ.js",
-    "chunks/chunk-BA427UCX.js",
-    "chunks/local-ai-ZLQAI5II.js",
+    "chunks/chunk-QBV7NKVY.js",
+    "chunks/local-ai-O6WMTT7Z.js",
     "chunks/pdf-import-FMQMKK73.js",
     "cosmos.js",
     "index.html",
@@ -37,6 +37,7 @@
     "theme.css",
     "three.module.js",
     "vargas.js",
+    "vimshottari.js",
     "cosmos.js?v=observatory-1"
   ]
 }

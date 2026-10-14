@@ -1,3 +1,4 @@
+const {NativeAI}=require('./native-ai.cjs');let nativeAI,forecastJournal;
 const {app,BrowserWindow,Menu,protocol,ipcMain,dialog,shell,session}=require('electron');const fs=require('node:fs/promises');const path=require('node:path');const {ProfileStore}=require('./profiles.cjs');const {assetPath}=require('./protocol-path.cjs');
 const {execFile}=require('node:child_process');const {promisify}=require('node:util');const execute=promisify(execFile);const crypto=require('node:crypto');const ORIGIN='jyothish://app';protocol.registerSchemesAsPrivileged([{scheme:'jyothish',privileges:{standard:true,secure:true,supportFetchAPI:true,allowServiceWorkers:true,stream:true}}]);
 app.setName('Jyotish');if(process.env.JYOTHISH_TEST_DATA)app.setPath('userData',process.env.JYOTHISH_TEST_DATA);if(!app.requestSingleInstanceLock()){app.quit()}else{app.on('second-instance',()=>{if(win){if(win.isMinimized())win.restore();win.show();win.focus()}})}
@@ -22,4 +23,14 @@ app.whenReady().then(async()=>{store=new ProfileStore(app.getPath('userData'));a
  ipcMain.handle('reports:open',async(event,id)=>{trusted(event);if(!(await reports()).some(r=>r.id===id))throw Error('Report not found.');const result=await shell.openPath(reportFile(id));if(result)throw Error(result);return {opened:true}});
  ipcMain.handle('reports:export',async(event,id)=>{trusted(event);const record=(await reports()).find(r=>r.id===id);if(!record)throw Error('Report not found.');const result=await dialog.showSaveDialog(win,{title:'Save a copy of your life report',defaultPath:'jyothish-life-report.pdf',filters:[{name:'PDF',extensions:['pdf']}]});if(result.canceled)return {cancelled:true};await fs.copyFile(reportFile(id),result.filePath);return {saved:true}});
  ipcMain.handle('report:pdf',async event=>{trusted(event);const result=await dialog.showSaveDialog(win,{title:'Save the current reading to PDF',defaultPath:'jyothish-reading.pdf',filters:[{name:'PDF',extensions:['pdf']}]});if(result.canceled)return {cancelled:true};const bytes=await win.webContents.printToPDF({printBackground:true,preferCSSPageSize:true,pageSize:'A4',margins:{top:.4,bottom:.4,left:.35,right:.35}});await fs.writeFile(result.filePath,bytes);return {saved:true}});
+ const {ForecastJournal}=require('./forecast-journal.cjs');forecastJournal=new ForecastJournal(app.getPath('userData'));
+ ipcMain.handle('forecasts:list',event=>{trusted(event);return forecastJournal.list()});
+ ipcMain.handle('forecasts:save',async(event,input)=>{trusted(event);if(!(await store.list()).some(p=>p.id===input?.profileId))throw Error('Save this profile first.');return forecastJournal.save({...input,softwareVersion:app.getVersion()})});
+ ipcMain.handle('forecasts:observe',(event,{id,observation})=>{trusted(event);return forecastJournal.observe(id,observation)});
+ nativeAI=new NativeAI(app.getPath('userData'),app.isPackaged?path.join(process.resourcesPath,'llama','llama-server'+(process.platform==='win32'?'.exe':'')):path.resolve(__dirname,'../../native-engine/mac-'+(process.arch==='arm64'?'arm64':'x64')+'/llama-b11609/llama-server'));
+ ipcMain.handle('ai:load',async event=>{trusted(event);await nativeAI.prepare(p=>win?.webContents.send('ai:progress',p));return {ready:true}});
+ ipcMain.handle('ai:answer',async(event,prompt)=>{trusted(event);return nativeAI.answer(prompt)});
+ ipcMain.handle('ai:unload',event=>{trusted(event);nativeAI.unload();return {stopped:true}});
  menu();createWindow();app.on('activate',()=>{if(!BrowserWindow.getAllWindows().length)createWindow()});}).catch(error=>{dialog.showErrorBox('Jyotish could not start',error.message);app.quit()});app.on('window-all-closed',()=>{if(process.platform!=='darwin')app.quit()});
+
+app.on('before-quit',()=>nativeAI?.unload());

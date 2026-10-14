@@ -1,0 +1,7 @@
+/* The native sidebar and toolbar own navigation; the chart workspace keeps its controls. */
+body header,.studio-rail,.studio-topbar,.desktop-drag{display:none!important}
+body.desktop-app main{margin:0!important;width:100%!important;height:100dvh!important;max-width:none!important;padding:28px!important}
+body.desktop-app .chat-section{height:calc(100dvh - 56px)!important}
+.native-sources .chat-composer,.native-sources .chat-transcript,.native-sources .model-panel,.native-sources .chat-footer,.native-sources .chatgpt-handoff{display:none!important}
+.native-sources .chat-main{overflow:auto}
+.native-sources .source-library{height:auto!important;max-height:none!important}
