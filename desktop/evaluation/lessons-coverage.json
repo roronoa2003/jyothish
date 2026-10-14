@@ -1,0 +1,372 @@
+{
+  "source": "Lessons on Vedic Astrology Volume I (student-compiled, first print 2005)",
+  "sha256": "5a838bab779923d5f0f1da22a72541f090fc2346a168b4e14355fac1f66db6f6",
+  "lessons": [
+    {
+      "lesson": 1,
+      "pdfPage": 9,
+      "side": "left",
+      "topics": "Foundational references and devotional context",
+      "status": "Inventory completed; complete concept implementation and example evaluation not yet claimed"
+    },
+    {
+      "lesson": 2,
+      "pdfPage": 10,
+      "side": "right",
+      "topics": "Planetary symbolism and cultural narratives",
+      "status": "Inventory completed; complete concept implementation and example evaluation not yet claimed"
+    },
+    {
+      "lesson": 3,
+      "pdfPage": 13,
+      "side": "right",
+      "topics": "House groups, dignity and directional relationships",
+      "status": "Inventory completed; complete concept implementation and example evaluation not yet claimed"
+    },
+    {
+      "lesson": 4,
+      "pdfPage": 15,
+      "side": "left",
+      "topics": "Two aspect systems and intervention pairs",
+      "status": "Inventory completed; complete concept implementation and example evaluation not yet claimed"
+    },
+    {
+      "lesson": 5,
+      "pdfPage": 16,
+      "side": "right",
+      "topics": "Planetary hours and lunar/solar calendar conventions",
+      "status": "Inventory completed; complete concept implementation and example evaluation not yet claimed"
+    },
+    {
+      "lesson": 6,
+      "pdfPage": 20,
+      "side": "left",
+      "topics": "Varga selection and cultural mantra discussion",
+      "status": "Inventory completed; complete concept implementation and example evaluation not yet claimed"
+    },
+    {
+      "lesson": 7,
+      "pdfPage": 24,
+      "side": "right",
+      "topics": "Education-chart synthesis across example charts",
+      "status": "Inventory completed; complete concept implementation and example evaluation not yet claimed"
+    },
+    {
+      "lesson": 8,
+      "pdfPage": 27,
+      "side": "left",
+      "topics": "Career divisions, amsa deities and professional roles",
+      "status": "Inventory completed; complete concept implementation and example evaluation not yet claimed"
+    },
+    {
+      "lesson": 9,
+      "pdfPage": 29,
+      "side": "right",
+      "topics": "Arudha calculation and observable manifestations",
+      "status": "Inventory completed; complete concept implementation and example evaluation not yet claimed"
+    },
+    {
+      "lesson": 10,
+      "pdfPage": 31,
+      "side": "right",
+      "topics": "Natal capacity versus divisional and arudha expression",
+      "status": "Inventory completed; complete concept implementation and example evaluation not yet claimed"
+    },
+    {
+      "lesson": 11,
+      "pdfPage": 33,
+      "side": "right",
+      "topics": "Relationships between house groups and visible outcomes",
+      "status": "Inventory completed; complete concept implementation and example evaluation not yet claimed"
+    },
+    {
+      "lesson": 12,
+      "pdfPage": 36,
+      "side": "left",
+      "topics": "Significators, aspects and leadership examples",
+      "status": "Inventory completed; complete concept implementation and example evaluation not yet claimed"
+    },
+    {
+      "lesson": 13,
+      "pdfPage": 38,
+      "side": "right",
+      "topics": "Derived family references and annual chart introduction",
+      "status": "Inventory completed; complete concept implementation and example evaluation not yet claimed"
+    },
+    {
+      "lesson": 14,
+      "pdfPage": 40,
+      "side": "left",
+      "topics": "Annual readings and vargottama considerations",
+      "status": "Inventory completed; complete concept implementation and example evaluation not yet claimed"
+    },
+    {
+      "lesson": 15,
+      "pdfPage": 41,
+      "side": "left",
+      "topics": "Material image, marriage references and significators",
+      "status": "Inventory completed; complete concept implementation and example evaluation not yet claimed"
+    },
+    {
+      "lesson": 16,
+      "pdfPage": 42,
+      "side": "right",
+      "topics": "Natural, movable and fixed significators kept distinct",
+      "status": "Inventory completed; complete concept implementation and example evaluation not yet claimed"
+    },
+    {
+      "lesson": 17,
+      "pdfPage": 44,
+      "side": "left",
+      "topics": "Near-degree karaka rankings and uncertain rectification",
+      "status": "Inventory completed; complete concept implementation and example evaluation not yet claimed"
+    },
+    {
+      "lesson": 18,
+      "pdfPage": 46,
+      "side": "right",
+      "topics": "Event-based birth-time checking across divisions",
+      "status": "Inventory completed; complete concept implementation and example evaluation not yet claimed"
+    },
+    {
+      "lesson": 19,
+      "pdfPage": 48,
+      "side": "right",
+      "topics": "Sibling and descendant reference conventions",
+      "status": "Inventory completed; complete concept implementation and example evaluation not yet claimed"
+    },
+    {
+      "lesson": 20,
+      "pdfPage": 49,
+      "side": "right",
+      "topics": "Conditional dasha eligibility and relocation examples",
+      "status": "Inventory completed; complete concept implementation and example evaluation not yet claimed"
+    },
+    {
+      "lesson": 21,
+      "pdfPage": 53,
+      "side": "left",
+      "topics": "Electional and political chart context",
+      "status": "Inventory completed; complete concept implementation and example evaluation not yet claimed"
+    },
+    {
+      "lesson": 22,
+      "pdfPage": 56,
+      "side": "right",
+      "topics": "Spiritual symbolism and an arrest example",
+      "status": "Inventory completed; complete concept implementation and example evaluation not yet claimed"
+    },
+    {
+      "lesson": 23,
+      "pdfPage": 58,
+      "side": "right",
+      "topics": "Bhoga and domain-specific career/education readings",
+      "status": "Inventory completed; complete concept implementation and example evaluation not yet claimed"
+    },
+    {
+      "lesson": 24,
+      "pdfPage": 60,
+      "side": "left",
+      "topics": "Relocation, comforts and health-related symbolism",
+      "status": "Inventory completed; complete concept implementation and example evaluation not yet claimed"
+    },
+    {
+      "lesson": 25,
+      "pdfPage": 62,
+      "side": "left",
+      "topics": "Multi-chart music and public-service example",
+      "status": "Inventory completed; complete concept implementation and example evaluation not yet claimed"
+    },
+    {
+      "lesson": 26,
+      "pdfPage": 64,
+      "side": "left",
+      "topics": "Multi-event rectification with annual chart comparisons",
+      "status": "Inventory completed; complete concept implementation and example evaluation not yet claimed"
+    },
+    {
+      "lesson": 27,
+      "pdfPage": 69,
+      "side": "right",
+      "topics": "Career, relationships and family exceptions",
+      "status": "Inventory completed; complete concept implementation and example evaluation not yet claimed"
+    },
+    {
+      "lesson": 28,
+      "pdfPage": 74,
+      "side": "right",
+      "topics": "Education and relationship examples using alternate systems",
+      "status": "Inventory completed; complete concept implementation and example evaluation not yet claimed"
+    },
+    {
+      "lesson": 29,
+      "pdfPage": 75,
+      "side": "right",
+      "topics": "Narayana seed selection and reference frames",
+      "status": "Inventory completed; complete concept implementation and example evaluation not yet claimed"
+    },
+    {
+      "lesson": 30,
+      "pdfPage": 76,
+      "side": "right",
+      "topics": "Period-entry readings and career changes",
+      "status": "Inventory completed; complete concept implementation and example evaluation not yet claimed"
+    },
+    {
+      "lesson": 31,
+      "pdfPage": 77,
+      "side": "right",
+      "topics": "Annual timing and career/relationship puzzles",
+      "status": "Inventory completed; complete concept implementation and example evaluation not yet claimed"
+    },
+    {
+      "lesson": 32,
+      "pdfPage": 78,
+      "side": "right",
+      "topics": "Divisional Narayana examples and vocational puzzles",
+      "status": "Inventory completed; complete concept implementation and example evaluation not yet claimed"
+    },
+    {
+      "lesson": 33,
+      "pdfPage": 81,
+      "side": "right",
+      "topics": "Narayana three-part emphasis and subordinate phases",
+      "status": "Inventory completed; complete concept implementation and example evaluation not yet claimed"
+    },
+    {
+      "lesson": 34,
+      "pdfPage": 85,
+      "side": "left",
+      "topics": "Marriage and family confluence in sign periods",
+      "status": "Inventory completed; complete concept implementation and example evaluation not yet claimed"
+    },
+    {
+      "lesson": 35,
+      "pdfPage": 87,
+      "side": "left",
+      "topics": "Education and parents through divisional sign periods",
+      "status": "Inventory completed; complete concept implementation and example evaluation not yet claimed"
+    },
+    {
+      "lesson": 36,
+      "pdfPage": 90,
+      "side": "left",
+      "topics": "Mundane charts and calendar choices",
+      "status": "Inventory completed; complete concept implementation and example evaluation not yet claimed"
+    },
+    {
+      "lesson": 37,
+      "pdfPage": 93,
+      "side": "right",
+      "topics": "Contribution tables, enclosures and spiritual patterns",
+      "status": "Inventory completed; complete concept implementation and example evaluation not yet claimed"
+    },
+    {
+      "lesson": 38,
+      "pdfPage": 94,
+      "side": "right",
+      "topics": "Transit references, contribution balance and obstruction",
+      "status": "Inventory completed; complete concept implementation and example evaluation not yet claimed"
+    },
+    {
+      "lesson": 39,
+      "pdfPage": 95,
+      "side": "right",
+      "topics": "Transit contribution examples",
+      "status": "Inventory completed; complete concept implementation and example evaluation not yet claimed"
+    },
+    {
+      "lesson": 40,
+      "pdfPage": 100,
+      "side": "left",
+      "topics": "National charts and alternate Vimshottari references",
+      "status": "Inventory completed; complete concept implementation and example evaluation not yet claimed"
+    },
+    {
+      "lesson": 41,
+      "pdfPage": 101,
+      "side": "right",
+      "topics": "Jaimini coding and Navamsa context",
+      "status": "Inventory completed; complete concept implementation and example evaluation not yet claimed"
+    },
+    {
+      "lesson": 42,
+      "pdfPage": 104,
+      "side": "right",
+      "topics": "Marriage-date puzzle and Kashinatha Hora finance",
+      "status": "Inventory completed; complete concept implementation and example evaluation not yet claimed"
+    },
+    {
+      "lesson": 43,
+      "pdfPage": 106,
+      "side": "right",
+      "topics": "Career and finance phases with annual comparisons",
+      "status": "Inventory completed; complete concept implementation and example evaluation not yet claimed"
+    },
+    {
+      "lesson": 44,
+      "pdfPage": 108,
+      "side": "right",
+      "topics": "Birth-time uncertainty and Drig dasha introduction",
+      "status": "Inventory completed; complete concept implementation and example evaluation not yet claimed"
+    },
+    {
+      "lesson": 45,
+      "pdfPage": 110,
+      "side": "right",
+      "topics": "Graha arudhas and annual relationship examples",
+      "status": "Inventory completed; complete concept implementation and example evaluation not yet claimed"
+    }
+  ],
+  "issues": [
+    "Lesson 7/8 use different AM/PM for the same D24 example; this also appears in Appendix B.",
+    "Lesson 12 latitude 80N58 exceeds this app\u2019s supported range and conflicts with the described location; no silent correction.",
+    "Lesson 20 gives conflicting dasha-selection priorities and a questionable Dwadashottari cycle length; only candidate conditions are implemented.",
+    "Lesson 23 uses an ambiguous OR in the Mahapurusha condition.",
+    "Lesson 33 gives a ten-year Sagittarius period but later describes some thirds as four years; arithmetic is checked independently.",
+    "Lesson 38 lists the same Jupiter transit house as both favorable and unfavorable; no unqualified rule was imported.",
+    "Lesson 42 uses Kashinatha Hora; the app\u2019s existing D2 is Sun/Moon Hora. Those financial examples cannot be graded as the same chart."
+  ],
+  "closeReadingCompletedForLessons": [
+    5,
+    8,
+    13,
+    14,
+    15,
+    16,
+    23,
+    24,
+    29,
+    30,
+    31,
+    37,
+    38,
+    42
+  ],
+  "partialCloseReadingForLessons": [
+    20,
+    33
+  ],
+  "productionCoverage": [
+    "Sun and Moon reference houses",
+    "Four purushartha chains",
+    "Kaaresha natal ruler carried into a relevant division",
+    "Badhaka reference house with no automatic adverse prediction",
+    "D10 livelihood links and amsa labels",
+    "SAV house-group comparison under the disclosed uncorrected scheme",
+    "Conditional dasha eligibility separated from active timelines"
+  ],
+  "calculationOnlyCoverage": [
+    "Dwisaptati equal-period timing",
+    "Narayana thirds from a supplied interval",
+    "Bhoga sign",
+    "Derived symbolic family reference",
+    "Marana position labels"
+  ],
+  "unresolvedExample": {
+    "lesson": 42,
+    "reportedMarriageDate": "1997-05-09",
+    "status": "Not reproduced as an independently selected event date",
+    "reason": "Annual Tithi Pravesha and compressed annual timing not implemented; Dwisaptati subperiod alone is insufficient"
+  }
+}

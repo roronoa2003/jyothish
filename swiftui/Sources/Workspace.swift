@@ -38,7 +38,9 @@ struct Consultation:Identifiable,Codable {var id=UUID();let question:String;let 
   config.userContentController.add(self,name:"profile")
   let script="""
   window.jyothishDesktop={};
-  for(const key of ['info','listProfiles','saveProfile','exportLibrary','importLibrary','saveReading','listReadings','exportReading','listReports','generateLifeReport','openReport','exportReport','savePDF','listForecasts','saveForecast'])window.jyothishDesktop[key]=data=>window.webkit.messageHandlers.native.postMessage({method:key,data});
+  for(const key of ['info','listProfiles','saveProfile','exportLibrary','importLibrary','saveReading','listReadings','exportReading','listReports','generateLifeReport','openReport','exportReport','savePDF','listForecasts','saveForecast','aiLoad','aiAnswer','aiUnload','loadConversation','saveConversation'])window.jyothishDesktop[key]=data=>window.webkit.messageHandlers.native.postMessage({method:key,data});
+  window.jyothishDesktop.nativeAI=true;
+  window.jyotishAIProgressListeners=new Set();window.jyothishDesktop.onAIProgress=fn=>{window.jyotishAIProgressListeners.add(fn);return()=>window.jyotishAIProgressListeners.delete(fn)};
   window.jyothishDesktop.observeForecast=(id,observation)=>window.webkit.messageHandlers.native.postMessage({method:"observeForecast",data:{id,observation}});
   window.jyothishDesktop.onCommand=fn=>{window.jyotishNativeCommand=fn;return()=>{window.jyotishNativeCommand=null}};
   """
@@ -82,6 +84,11 @@ struct Consultation:Identifiable,Codable {var id=UUID();let question:String;let 
  }
  private func handle(_ method:String,_ data:Any?)async throws->Any {
   switch method{
+  case "aiLoad":try await model.prepare{[weak self] label,value in Task{@MainActor in _ = try? await self?.js("for(const fn of window.jyotishAIProgressListeners)fn(progress)",["progress":["text":label,"progress":value]])}};return ["ready":true]
+  case "aiAnswer":guard let input=data as? [String:Any],let prompt=input["prompt"] as? String,prompt.count<=80000,let schema=input["schema"] as? [String:Any] else{throw LocalFailure(message:"Invalid local model request.")};return try await model.answer(prompt:prompt,schema:schema)
+  case "aiUnload":model.cancel();return ["unloaded":true]
+  case "loadConversation":guard let id=data as? String else{return []};let file=try library.safeFile("conversations",id,".json");guard FileManager.default.fileExists(atPath:file.path) else{return []};return try JSONSerialization.jsonObject(with:Data(contentsOf:file))
+  case "saveConversation":guard let input=data as? [String:Any],let id=input["profileId"] as? String,library.profiles().contains(where:{$0["id"] as? String==id}),let messages=input["messages"] as? [[String:Any]],messages.count<=200,messages.allSatisfy({(($0["question"] as? String)?.count ?? 999999) <= 2000 && (($0["answer"] as? String)?.count ?? 999999) <= 20000}) else{throw LocalFailure(message:"Invalid local conversation.")};_ = try library.safeFile("conversations",id,".json");try library.write(messages,"conversations/"+id+".json");return ["saved":true]
   case "listForecasts":return try library.forecasts()
   case "saveForecast":guard let input=data as? [String:Any],let id=input["profileId"] as? String,library.profiles().contains(where:{$0["id"] as? String==id}),let valid=try await js("return window.jyotishValidateForecast(input)",["input":input]) as? [String:Any] else{throw LocalFailure(message:"A saved profile is required.")};return try library.saveForecast(valid)
   case "observeForecast":guard let input=data as? [String:Any],let id=input["id"] as? String,let observation=input["observation"] as? [String:Any],let record=try library.forecasts().first(where:{$0["id"] as? String==id}),record["integrity"] as? Bool==true,let updated=try await js("return window.jyotishAppendObservation(record,observation)",["record":record,"observation":observation]) as? [String:Any],let observations=updated["observations"] as? [[String:Any]] else{throw LocalFailure(message:"Invalid forecast observation.")};return try library.observeForecast(id,observations)

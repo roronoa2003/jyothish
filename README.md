@@ -6,7 +6,7 @@ A private Vedic astrology workspace with an interactive parchment Kundli, sixtee
 
 ## Install
 
-**Mac:** download Apple Silicon or Intel ZIP, extract, and move Jyotish.app into Applications. Version 1.1.0 uses a native SwiftUI interface and requires macOS 13.3+. It is ad-hoc signed, **not Apple-notarized**. Apple may block first launch; review the source/release and use the specific Privacy & Security approval only if you trust it. Apple Silicon was exercised locally; Intel execution remains unverified on Intel hardware.
+**Mac:** download Apple Silicon or Intel ZIP, extract, and move Jyotish.app into Applications. Version 1.1.1 restores the original Atlas interface inside a SwiftUI/WebKit host, retaining native storage and inference and requires macOS 13.3+. It is ad-hoc signed, **not Apple-notarized**. Apple may block first launch; review the source/release and use the specific Privacy & Security approval only if you trust it. Apple Silicon was exercised locally; Intel execution remains unverified on Intel hardware.
 
 **Windows 10/11 x64:** extract the entire portable ZIP and open Jyotish.exe. Keep its supporting files together. This build is unsigned; Windows execution and GPU compatibility remain unverified on Windows hardware. Python is included.
 
@@ -43,6 +43,8 @@ Astronomy Engine 2.1.19 computes positions, with approximate Lahiri ayanamsa, me
 
 Timing subdivides the complete initial Vimshottari period before clipping the birth balance. Intervals are half-open and nested endpoints are preserved. Daily/weekly reading boundaries use UTC. High vargas are flagged where a hypothetical ±5-minute experiment changes their ascendants; that experiment is not rectification.
 
+The Lessons Volume I lens adds declared Sun/Moon reference charts, kaaresha, badhaka reference houses and D10 livelihood links. Conditional dasha eligibility is reported separately from calculated active periods. Standalone Dwisaptati and Narayana phase functions are calculation-tested but are not yet a complete annual event-prediction engine. [The lesson coverage register](desktop/evaluation/lessons-coverage.json) records the incomplete coverage and source conflicts.
+
 The Rao textbook lens adds primary co-lord selection, arudha exceptions, rasi drishti, argala/obstruction pairs and structural kendra–trikona links. It is labeled separately from visible-planet classical ownership. Specific publication/family patterns are limited generalizations of worked examples, not universal necessary rules. Source inconsistencies and conventions are documented in the audit.
 
 Selected BPHS, Phaladeepika and Saravali summaries contribute proportional timing, sign dignity, connections and directional planetary relations. Curated Lal Kitab practices use the disclosed D1 house-matching convention; they do not constitute a complete Lal Kitab engine. Full Shadbala, all yoga/cancellation rules, rectification and calibrated event probabilities are not implemented. Symbolic practices are optional, with no promise to alter outcomes.
@@ -68,6 +70,6 @@ node swiftui/build.mjs --intel
 node desktop/package.mjs --windows
 ```
 
-Mac builds are SwiftUI; Windows remains Electron. Official native inference runtimes and CPython dependencies are pinned; weights download at runtime. Inspect desktop/THIRD_PARTY_NOTICES.md. Use JYOTISH_NATIVE_OUTPUT for Mac output, JYOTHISH_OUTPUT for Windows ZIP output, and JYOTISH_TEST_DATA for isolated SwiftUI QA data. Never bundle private app-data folders.
+Mac builds use a SwiftUI host with the Atlas interface; Windows remains Electron. Official native inference runtimes and CPython dependencies are pinned; weights download at runtime. Inspect desktop/THIRD_PARTY_NOTICES.md. Use JYOTISH_NATIVE_OUTPUT for Mac output, JYOTHISH_OUTPUT for Windows ZIP output, and JYOTISH_TEST_DATA for isolated SwiftUI QA data. Never bundle private app-data folders.
 
 The docs/ download page belongs to this separate repository and does not change the portfolio repository. Developer ID/notarization still requires the maintainer's Apple enrollment and credentials; an ad-hoc signature does not remove Gatekeeper verification warnings.

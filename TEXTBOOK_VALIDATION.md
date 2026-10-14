@@ -34,3 +34,14 @@ The local forecast journal stores the concrete event, direction, date windows, a
 ## Release checks
 
 The current source passed 17 core tests, 48 desktop tests and the application-entrypoint check. The latest constrained Qwen3.5 9B evaluation passed four selected cases on their first attempts (approximately 25–29 seconds per case); see desktop/evaluation/latest-validation.json. Prior failed responses are retained in the isolated development records. Apple Silicon SwiftUI checks exercised profile restoration, native conversation, Python PDF generation and forecast-journal snapshot persistence. Intel and Windows binaries were built and checked, but runtime execution on those platforms remains unverified.
+
+
+## Lessons on Vedic Astrology, Volume I — incremental audit
+
+Source: PVR Narasimha Rao, student-compiled lessons 1–45, 2005. The supplied PDF has 122 physical pages; printed pages occur two per PDF page. SHA-256: `5a838bab779923d5f0f1da22a72541f090fc2346a168b4e14355fac1f66db6f6`. Full source text is not distributed. All 45 lessons have been inventoried; close reading, implementation and model evaluation remain incomplete. See the paraphrased [coverage register](desktop/evaluation/lessons-coverage.json).
+
+Ten added tests check reference charts, purushartha groups, badhaka rules, eight/seven karaka conventions, conditional dasha eligibility, answer folding, the Lesson 8 D10 placements and amsa labels, the Lesson 17 Mars/Venus ranking, Bhoga, Lesson 33 period thirds, derived family references and independently sourced Dwisaptati timing. Passing these checks does not establish prediction accuracy.
+
+The Lesson 42 marriage quiz is **not passed**. Dwisaptati reproduces the reported April 1994 Rahu major-period start, but the computed subperiod on the reported May 1997 marriage date is Saturn rather than Jupiter under the declared sidereal year. The book resolves competing dates using annual Tithi Pravesha, which is not implemented here. The test is not altered to force the known answer. Bangalore coordinates in the probe are the app's listed-city approximation because that example does not supply exact coordinates.
+
+The original Atlas visual design is restored in 1.1.1 while retaining native model inference, profile storage, life books, timing and forecast journal. A native Mac question about next-month career completed with a chart-grounded answer and persisted across reopening. Root tests: 17 passed; desktop tests: 59 passed. Intel and Windows runtime execution still require testing on those platforms.
