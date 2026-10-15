@@ -60,12 +60,13 @@ final class LocalModel: NSObject, URLSessionDownloadDelegate {
         }
         unload(); throw LocalFailure(message: "Model startup timed out. Free some device memory and retry.")
     }
-    func answer(prompt: String, schema: [String:Any], reasoning: Bool = false) async throws -> String {
+    func answer(prompt: String, systemPrompt: String = "", schema: [String:Any], reasoning: Bool = false) async throws -> String {
         guard let endpoint else { throw LocalFailure(message: "Load the local model first.") }
         let task = Task<String, Error> {
             var request = URLRequest(url: endpoint.appendingPathComponent("v1/chat/completions")); request.httpMethod = "POST"; request.timeoutInterval = 300
             request.setValue("application/json", forHTTPHeaderField: "Content-Type"); request.setValue("Bearer \(token)", forHTTPHeaderField: "Authorization")
-            request.httpBody = try JSONSerialization.data(withJSONObject: ["messages": [["role":"user", "content":prompt]], "temperature":0.2, "max_tokens":reasoning ? 4096 : 1600, "stream":false, "response_format":["type":"json_schema","json_schema":["name":"jyotish_consultation","strict":true,"schema":schema]], "chat_template_kwargs":["enable_thinking":reasoning]])
+            let messages:[[String:String]] = (systemPrompt.isEmpty ? [] : [["role":"system","content":systemPrompt]]) + [["role":"user", "content":prompt]]
+            request.httpBody = try JSONSerialization.data(withJSONObject: ["messages": messages, "temperature":0.2, "max_tokens":reasoning ? 4096 : 1600, "stream":false, "response_format":["type":"json_schema","json_schema":["name":"jyotish_consultation","strict":true,"schema":schema]], "chat_template_kwargs":["enable_thinking":reasoning]])
             let (data, response) = try await URLSession.shared.data(for: request)
             guard (response as? HTTPURLResponse)?.statusCode == 200, let object = try JSONSerialization.jsonObject(with: data) as? [String:Any], let choices = object["choices"] as? [[String:Any]], let message = choices.first?["message"] as? [String:Any], let content = message["content"] as? String else { throw LocalFailure(message: "The local model could not complete this answer.") }
             return Self.finalText(content)

@@ -6,7 +6,7 @@ A private Vedic astrology workspace with an interactive parchment Kundli, sixtee
 
 ## Install
 
-**Mac:** download Apple Silicon or Intel ZIP, extract, and move Jyotish.app into Applications. Version 1.1.4 restores the original Atlas interface inside a SwiftUI/WebKit host, retaining native storage and inference and requires macOS 13.3+. It is ad-hoc signed, **not Apple-notarized**. Apple may block first launch; review the source/release and use the specific Privacy & Security approval only if you trust it. Apple Silicon was exercised locally; Intel execution remains unverified on Intel hardware.
+**Mac:** download Apple Silicon or Intel ZIP, extract, and move Jyotish.app into Applications. Version 1.1.8 updates the chart-grounded reading engine while retaining the original Atlas interface inside a SwiftUI/WebKit host, native storage and inference. It requires macOS 13.3+. It is ad-hoc signed, **not Apple-notarized**. Apple may block first launch; review the source/release and use the specific Privacy & Security approval only if you trust it. Apple Silicon was exercised locally; Intel execution remains unverified on Intel hardware.
 
 **Windows 10/11 x64:** extract the entire portable ZIP and open Jyotish.exe. Keep its supporting files together. This build is unsigned; Windows execution and GPU compatibility remain unverified on Windows hardware. Python is included.
 
@@ -20,6 +20,8 @@ There is no automatic app updater. Close the previous app and replace it with th
 4. Generate a life book with charts, ruler chains, combinations, dasha tables, monthly readings and source/method notes. PDFs are saved locally and can be exported.
 5. Track a conversation forecast by defining a concrete outcome and its direction before saving. Later record what happened, including misses. The journal retains dated snapshots separately from observations and excludes retrospective entries and abstentions from scored results.
 
+Chart readings pass textbook-derived methods as a dedicated model system instruction and send calculated natal, divisional, dasha, and transit facts separately as evidence. The reading can combine relevant charts and timing conventions; it does not train or fine-tune the selected model. Narayana calculations identify their author's convention explicitly and keep it distinct from other books' worked examples.
+
 ## Local AI
 
 Desktop inference uses **Qwen3.5 9B Q4_K_M** through a pinned official llama.cpp runtime. The 5.68 GB model downloads once and is SHA-256 verified. It is not embedded in the app download. Allow substantial free RAM/disk space; 16 GB or more is recommended, with speed depending on hardware. Native GPU fitting can fall back to CPU. No API key or ChatGPT account automation is required.
@@ -32,7 +34,7 @@ Imported searchable PDFs/text remain local and are retrieved at answer time. **I
 
 ## Optional online reasoning and voice
 
-In Chat → Reading settings, choose **Online AI · Groq free tier**, enter your own account-issued key, enable the disclosed sharing permission and save. The default hosted model is Qwen 3.8 27B. Free quotas are account-limited and may be insufficient for high-volume customer use. No paid billing or shared key is enabled by the app.
+In Chat → Reading settings, choose **Online AI · Groq free tier**, enter your own account-issued key, enable the disclosed sharing permission and save. The default hosted model is Qwen 3.8 27B. With sharing enabled, Jyotish sends the question, computed chart evidence, relevant retrieved book excerpts, and a dedicated system instruction directing the model to combine natal promise, topic-specific divisional charts, dasha, date windows, transits and supplied annual-chart evidence. The instruction is sent on each request; it does not train the hosted model. Free quotas are account-limited and may be insufficient for high-volume customer use. No paid billing or shared key is enabled by the app.
 
 Online mode uses the same question planning, calculated natal/divisional facts, period activation, timing windows, source retrieval, structured output and fact/date validation as local inference. Invalid responses get one repair attempt and then a visible error, rather than a generic substitute. Book retrieval supplies context; it does not fine-tune model weights. Retrieved-source cards are hidden from conversation display but retained in context and answer export.
 

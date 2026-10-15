@@ -301,38 +301,38 @@
       "pdfPage": 106,
       "side": "right",
       "topics": "Career and finance phases with annual comparisons",
-      "status": "Inventory completed; complete concept implementation and example evaluation not yet claimed"
+      "status": "Close-read PDF pages 106–108; annual career/hora rules inventoried; D2 Kashinatha example differs from production Sun/Moon Hora; full example prediction not independently validated"
     },
     {
       "lesson": 44,
       "pdfPage": 108,
       "side": "right",
       "topics": "Birth-time uncertainty and Drig dasha introduction",
-      "status": "Inventory completed; complete concept implementation and example evaluation not yet claimed"
+      "status": "Close-read PDF pages 108–110; planet-as-Lagna and named house-from-planet rules implemented for mental peace, professional power, courage, work, children, wisdom, and comfort; birth-time uncertainty retained; Drig Dasa remains an introduction, not a complete implemented system"
     },
     {
       "lesson": 45,
       "pdfPage": 110,
       "side": "right",
       "topics": "Graha arudhas and annual relationship examples",
-      "status": "Inventory completed; complete concept implementation and example evaluation not yet claimed"
+      "status": "Close-read PDF pages 110–114; D9 seventh-house graha arudha and annual Tithi Pravesha comparison context implemented; future relationship windows include annual D1/D9 factors; Sachin multi-year marriage/career retrospective remains unvalidated"
     }
   ],
   "issues": [
     "Lesson 7/8 use different AM/PM for the same D24 example; this also appears in Appendix B.",
-    "Lesson 12 latitude 80N58 exceeds this app\u2019s supported range and conflicts with the described location; no silent correction.",
+    "Lesson 12 latitude 80N58 exceeds this app’s supported range and conflicts with the described location; no silent correction.",
     "Lesson 20 gives conflicting dasha-selection priorities and a questionable Dwadashottari cycle length; only candidate conditions are implemented.",
     "Lesson 23 uses an ambiguous OR in the Mahapurusha condition.",
     "Lesson 33 gives a ten-year Sagittarius period but later describes some thirds as four years; arithmetic is checked independently.",
     "Lesson 38 lists the same Jupiter transit house as both favorable and unfavorable; no unqualified rule was imported.",
-    "Lesson 42 uses Kashinatha Hora; the app\u2019s existing D2 is Sun/Moon Hora. Those financial examples cannot be graded as the same chart."
+    "Lesson 42 uses Kashinatha Hora; the app’s existing D2 is Sun/Moon Hora. Those financial examples cannot be graded as the same chart.",
+    "Lesson 42 labels its opening section Vimshottari, then explicitly switches to Dwisaptati; its later Venus/Mercury period does not identify natal versus annual timing. The app keeps the calculated natal Vimshottari and conditional Dwisaptati traces separate and does not treat the reported pair as a calculated fact."
   ],
   "closeReadingCompletedForLessons": [
     5,
     8,
     13,
     14,
-    15,
     16,
     23,
     24,
@@ -341,7 +341,10 @@
     31,
     37,
     38,
-    42
+    42,
+    43,
+    44,
+    45
   ],
   "partialCloseReadingForLessons": [
     20,
@@ -354,19 +357,38 @@
     "Badhaka reference house with no automatic adverse prediction",
     "D10 livelihood links and amsa labels",
     "SAV house-group comparison under the disclosed uncorrected scheme",
-    "Conditional dasha eligibility separated from active timelines"
+    "Conditional dasha eligibility separated from active timelines",
+    "Lesson 45 Graha Arudha as a distinct ruler-derived reference, including D9 spouse-career context",
+    "Annual relationship prediction windows receive overlapping annual D1/D9, hora and timing context with an evidence requirement",
+    "Lesson 44 planet-as-Lagna and named relative-house readings are calculated, chart-specific and exposed as evidence in offline and API-backed consultations"
   ],
   "calculationOnlyCoverage": [
     "Dwisaptati equal-period timing",
     "Narayana thirds from a supplied interval",
     "Bhoga sign",
     "Derived symbolic family reference",
-    "Marana position labels"
+    "Marana position labels",
+    "Tithi Pravesha annual return with named solar-month conventions",
+    "Annual birthplace chart, planetary hora, annual interval splitting, and Tithi Ashtottari coverage"
   ],
   "unresolvedExample": {
     "lesson": 42,
     "reportedMarriageDate": "1997-05-09",
-    "status": "Not reproduced as an independently selected event date",
-    "reason": "Annual Tithi Pravesha and compressed annual timing not implemented; Dwisaptati subperiod alone is insufficient"
+    "status": "Calculation and stronger outcome-masked evaluator implemented; model result remains unverified under current rubric",
+    "implemented": [
+      "Annual Tithi Pravesha candidates with explicit month convention",
+      "Annual D1/D9 charts and planetary hora",
+      "Natal Dwisaptati active periods",
+      "Candidate-specific combination of natal timing plus annual D1 and D9",
+      "Separate natal D1 and D9 foundation checks"
+    ],
+    "notEstablished": [
+      "Fresh LLM pass under the strengthened rubric",
+      "Independent prospective prediction accuracy",
+      "Exact reproduction of the lesson D9 Narayana seed/progression"
+    ],
+    "reason": "The lesson’s D9 seed/progression is not fully specified in its worked example; the evaluator therefore does not substitute a different author’s D9 method. Approximate Bangalore coordinates are disclosed. An earlier saved pass used a weaker grader and is not accepted as evidence.",
+    "evaluator": "desktop/evaluation/annual-book-case.mjs",
+    "tests": "Annual-return, hora, annual Tithi Ashtottari, Lesson 42 chart facts, and evidence-scope tests pass; the model evaluator has not been freshly run under the current stricter grader."
   }
 }

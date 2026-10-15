@@ -1,5 +1,5 @@
 {
-  "version": "a415474fe3789e",
+  "version": "17880cdc65d96e",
   "files": [
     "./",
     "ADDITIONAL-LICENSES.txt",
@@ -22,8 +22,8 @@
     "assets/virgo.svg",
     "astronomy.js",
     "chunks/chunk-2RUN43TJ.js",
-    "chunks/chunk-QBV7NKVY.js",
-    "chunks/local-ai-M6XVOY2T.js",
+    "chunks/chunk-D3S25DMG.js",
+    "chunks/local-ai-MDUVHXKF.js",
     "chunks/pdf-import-FMQMKK73.js",
     "cosmos.js",
     "index.html",
