@@ -3,4 +3,4 @@ self.addEventListener('install',e=>e.waitUntil((async()=>{const r=await fetch(ne
 self.addEventListener('activate',e=>e.waitUntil((async()=>{let keys=await caches.keys();if(!current){let r=await caches.match(new URL('offline-assets.json',self.registration.scope));if(r)current=PREFIX+(await r.json()).version}for(let k of keys)if(k.startsWith(PREFIX)&&k!==current)await caches.delete(k);await self.clients.claim()})()));
 self.addEventListener('fetch',e=>{if(e.request.method!=='GET'||!e.request.url.startsWith(self.registration.scope))return;e.respondWith((async()=>{if(e.request.mode==='navigate'){try{let r=await fetch(e.request);if(r.ok)return r;throw Error('Offline')}catch{return await caches.match(new URL('./',self.registration.scope))||Response.error()}}try{let response=await fetch(e.request);if(response.ok){let cache=await caches.open(current||PREFIX+'runtime');await cache.put(e.request,response.clone());return response}throw Error('Fetch failed')}catch{return await caches.match(e.request)||Response.error()}})())});
 
-// Asset version: 2bfa5ca5b2f5cb
+// Asset version: a397f862040562
