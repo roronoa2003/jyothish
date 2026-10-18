@@ -1,5 +1,5 @@
 import {advancedAnswer} from './advanced-reader.mjs';
-import {consultationInput,validateChartClaims,renderConsultation} from '../src/conversation.js';
+import {consultationInput,consultationRetryPrompt,validateChartClaims,renderConsultation} from '../src/conversation.js';
 import {getBooks} from '../src/book-store.js';
 import {questionWithContext,validateLocalAnswer,validateTimingAnswer} from '../src/chat-engine.js';
 window.jyotishNativePrepare=async(question,time,history=[])=>{
@@ -8,6 +8,7 @@ window.jyotishNativePrepare=async(question,time,history=[])=>{
  return {...input,response};
 };
 window.jyotishNativeValidate=(text,input)=>validateLocalAnswer(text,input.pack,{requireSources:false})||validateTimingAnswer(text,input.response);
+window.jyotishNativeRetry=(input,failure)=>consultationRetryPrompt(input,failure);
 window.addEventListener('birth-chart',()=>window.webkit?.messageHandlers.profile.postMessage({name:window.latestBirthChart?.name||'Your chart'}));
 
 window.jyotishNativeRender=(raw,input)=>{const text=renderConsultation(raw,input);return {text,windows:input.generatedWindows}};

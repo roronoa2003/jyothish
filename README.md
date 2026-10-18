@@ -6,7 +6,7 @@ A private Vedic astrology workspace with an interactive parchment Kundli, sixtee
 
 ## Install
 
-**Mac:** download Apple Silicon or Intel ZIP, extract, and move Jyotish.app into Applications. Version 1.1.8 updates the chart-grounded reading engine while retaining the original Atlas interface inside a SwiftUI/WebKit host, native storage and inference. It requires macOS 13.3+. It is ad-hoc signed, **not Apple-notarized**. Apple may block first launch; review the source/release and use the specific Privacy & Security approval only if you trust it. Apple Silicon was exercised locally; Intel execution remains unverified on Intel hardware.
+**Mac:** download Apple Silicon or Intel ZIP, extract, and move Jyotish.app into Applications. Version 1.1.9 improves local Qwen answer validation and retry guidance, expands native inference context to 12,288 tokens, and fixes bundled model-library links while retaining the Atlas interface inside a SwiftUI/WebKit host. It requires macOS 13.3+. It is ad-hoc signed, **not Apple-notarized**. Apple may block first launch; review the source/release and use the specific Privacy & Security approval only if you trust it. Apple Silicon was exercised locally; Intel execution remains unverified on Intel hardware.
 
 **Windows 10/11 x64:** extract the entire portable ZIP and open Jyotish.exe. Keep its supporting files together. This build is unsigned; Windows execution and GPU compatibility remain unverified on Windows hardware. Python is included.
 

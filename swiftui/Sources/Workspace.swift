@@ -81,7 +81,8 @@ struct Consultation:Identifiable,Codable {var id=UUID();let question:String;let 
    var answer="";var windows:[[String:Double]]?;var failure="";var succeeded=false
    for attempt in 0..<2 {
     do {
-     let raw=try await model.answer(prompt:prompt+(attempt==0 ? "":"\nThe last draft failed validation: \(failure). Correct the format and use only supplied evidence IDs. In prose explain the event implication without repeating planetary calculations, house references, sign names, or dates."),schema:schema,reasoning:attempt>0)
+     let correction=attempt==0 ? "":((try? await js("return window.jyotishNativeRetry(input,failure)",["input":input,"failure":failure])) as? String ?? "\nThe last draft failed validation: \(failure). Correct the format and use only supplied evidence IDs.")
+     let raw=try await model.answer(prompt:prompt+correction,schema:schema,reasoning:attempt>0)
      guard let rendered=try await js("return window.jyotishNativeRender(raw,input)",["raw":raw,"input":input]) as? [String:Any],let text=rendered["text"] as? String,!text.isEmpty else{throw LocalFailure(message:"The chart reader returned no usable answer.")}
      answer=text;windows=rendered["windows"] as? [[String:Double]]
      if let issue=try await js("return window.jyotishNativeValidate(answer,input)",["answer":answer,"input":input]) as? String{throw LocalFailure(message:issue)}

@@ -46,7 +46,7 @@ final class LocalModel: NSObject, URLSessionDownloadDelegate {
         progress("Loading native model…", 1)
         let port = Int.random(in: 52000...59000)
         let p = Process(); p.executableURL = executable
-        p.arguments = ["-m", file.path, "--host", "127.0.0.1", "--port", String(port), "-c", "8192", "-ngl", "auto", "--parallel", "1", "--reasoning-budget", "512", "--no-webui", "--log-disable"]
+        p.arguments = ["-m", file.path, "--host", "127.0.0.1", "--port", String(port), "-c", "12288", "-ngl", "auto", "--parallel", "1", "--reasoning-budget", "512", "--no-webui", "--log-disable"]
         var environment = ProcessInfo.processInfo.environment; environment["LLAMA_API_KEY"] = token; p.environment = environment
         p.standardOutput = FileHandle.nullDevice; p.standardError = FileHandle.nullDevice
         try p.run(); process = p

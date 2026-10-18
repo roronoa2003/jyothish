@@ -119,3 +119,12 @@ The public-facing answer path continues to combine the asked event, profile-spec
 Verification: 17 core tests, 88 desktop tests, the native startup test, and the frontend build pass. The fresh shuffled Lesson 42 Qwen3.5-9B probe hid all four dates, the expected candidate, fixed-label examples and alternate timing hints; all four prompt-leak checks passed. Attempt one ended with incomplete JSON. In the next two drafts the model selected the reported candidate, but the strict rubric still failed: it omitted explicit comparisons to the selected candidate, left out the strongest counterfactor, and once copied an annual ruler incorrectly. This retrospective case therefore remains a failed prose-and-evidence audit, not evidence of calibrated or prospective accuracy. The lesson's missing coordinates and underspecified D9 timing convention also limit what can be validated.
 
 Mac downloads are ad-hoc signed and not Apple-notarized because a Developer ID certificate is unavailable. macOS may block first launch; the package does not bypass Gatekeeper. Windows x64 is packaged but has not been executed on Windows hardware. Model-generated interpretations can still be incomplete or wrong, and no real-world accuracy rate is claimed.
+
+
+## Version 1.1.9 local consultation check — 15 October 2026
+
+The native Qwen runtime now reserves a 12,288-token context for chart-heavy consultations. Forecast answers must lead with the requested event and a clear direction; the retry identifies the rejected technical term and keeps chart-specific mechanics in evidence-linked reasons. Mac packaging now converts llama library symlinks to bundle-relative links before ad-hoc signing.
+
+Verification: 17 core tests, 90 desktop tests, frontend build, Swift typecheck, strict Mac bundle signature verification, and Apple Silicon ZIP integrity pass. A masked synthetic campus research selection question completed Qwen's two-pass consultation flow and passed the app's evidence/directness/timing validators. This verifies the response pipeline only; there is no real-world outcome for that synthetic profile, so it does not establish predictive accuracy. A later test before targeted retry wording failed the style validator, which motivated the final correction.
+
+The 1.1.9 Mac packages remain ad-hoc signed and not Apple-notarized. Windows x64 packaging succeeds but was not run on Windows hardware. No model-generated reading is an established or guaranteed event.
